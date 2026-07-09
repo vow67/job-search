@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EthioJobs - Find Jobs in Ethiopia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+    <title>EthioJobs Pro - Ethiopia's Job Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <style>
-        /* ────────────── RESET & BASE ────────────── */
+        /* ────────────── RESET & CSS VARIABLES ────────────── */
         * {
             margin: 0;
             padding: 0;
@@ -39,14 +39,38 @@
             --radius-sm: 8px;
             --transition: all 0.3s ease;
             --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg-body: #f1f3f5;
+            --bg-card: #ffffff;
+            --text-color: #212529;
+            --border-color: #dee2e6;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --gray-100: #2a2a2a;
+            --gray-200: #333;
+            --gray-300: #444;
+            --gray-400: #555;
+            --gray-500: #777;
+            --gray-600: #999;
+            --gray-700: #bbb;
+            --gray-800: #ddd;
+            --gray-900: #eee;
+            --shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
+            --primary-light: #1a3a6a;
         }
 
         body {
             font-family: var(--font);
-            background: var(--gray-100);
-            color: var(--gray-900);
+            background: var(--bg-body);
+            color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
         }
 
         a {
@@ -55,9 +79,6 @@
         }
         ul {
             list-style: none;
-        }
-        img {
-            max-width: 100%;
         }
 
         .container {
@@ -130,13 +151,17 @@
 
         /* ────────────── HEADER ────────────── */
         header {
-            background: #fff;
+            background: var(--bg-card);
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             backdrop-filter: blur(12px);
             background: rgba(255, 255, 255, 0.92);
+            transition: background 0.3s;
+        }
+        [data-theme="dark"] header {
+            background: rgba(30, 30, 30, 0.92);
         }
 
         .header-inner {
@@ -144,6 +169,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 14px 0;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -158,7 +184,7 @@
             font-size: 1.8rem;
         }
         .logo span {
-            color: var(--dark);
+            color: var(--text-color);
         }
 
         .nav-links {
@@ -178,11 +204,17 @@
             font-weight: 600;
         }
 
+        .user-greeting {
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
         .hamburger {
             display: none;
             font-size: 1.6rem;
             cursor: pointer;
-            color: var(--gray-700);
+            color: var(--text-color);
             background: none;
             border: none;
         }
@@ -294,7 +326,7 @@
             width: 100%;
             outline: none;
             font-family: var(--font);
-            color: var(--gray-800);
+            color: var(--text-color);
         }
         .search-box input::placeholder {
             color: var(--gray-500);
@@ -354,7 +386,7 @@
             margin-bottom: 48px;
         }
         .category-card {
-            background: #fff;
+            background: var(--bg-card);
             padding: 20px 16px;
             border-radius: var(--radius);
             text-align: center;
@@ -411,11 +443,12 @@
         .jobs-header .right select {
             padding: 8px 16px;
             border-radius: var(--radius-sm);
-            border: 1px solid var(--gray-300);
-            background: #fff;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
             font-family: var(--font);
             font-size: 0.9rem;
             cursor: pointer;
+            color: var(--text-color);
         }
 
         .jobs-grid {
@@ -426,7 +459,7 @@
 
         /* ── job card ── */
         .job-card {
-            background: #fff;
+            background: var(--bg-card);
             border-radius: var(--radius);
             padding: 24px 28px;
             box-shadow: var(--shadow);
@@ -509,6 +542,58 @@
             background: #f8d7da;
             color: #842029;
         }
+        .job-card .job-tags .tag.internship {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+        .job-card .job-tags .tag.freelance {
+            background: #e2d9f3;
+            color: #4b2b7a;
+        }
+        .job-card .job-tags .tag.temporary {
+            background: #fce4ec;
+            color: #b71c1c;
+        }
+        .job-card .job-tags .tag.volunteer {
+            background: #fff8e1;
+            color: #e65100;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag {
+            background: #2a2a2a;
+            color: #90caf9;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.remote {
+            background: #1a3a2a;
+            color: #81c784;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.fulltime {
+            background: #1a2a4a;
+            color: #90caf9;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.parttime {
+            background: #3a3a1a;
+            color: #ffd54f;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.contract {
+            background: #3a1a1a;
+            color: #ef9a9a;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.internship {
+            background: #1a3a2a;
+            color: #81c784;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.freelance {
+            background: #2a1a3a;
+            color: #b39ddb;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.temporary {
+            background: #3a1a2a;
+            color: #ef9a9a;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.volunteer {
+            background: #3a2a1a;
+            color: #ffb74d;
+        }
 
         .job-card .job-actions {
             display: flex;
@@ -527,11 +612,42 @@
             color: var(--gray-500);
         }
 
+        /* ────────────── PAGINATION ────────────── */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        .pagination button.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .pagination button:hover:not(.active) {
+            background: var(--gray-200);
+        }
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* ────────────── EMPTY STATE ────────────── */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
-            background: #fff;
+            background: var(--bg-card);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
@@ -548,13 +664,13 @@
             color: var(--gray-600);
         }
 
-        /* ────────────── MODAL ────────────── */
+        /* ────────────── MODALS ────────────── */
         .modal-overlay {
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(6px);
-            z-index: 999;
+            z-index: 9999;
             display: none;
             align-items: center;
             justify-content: center;
@@ -566,13 +682,13 @@
         }
 
         .modal {
-            background: #fff;
+            background: var(--bg-card);
             border-radius: var(--radius);
-            max-width: 700px;
+            max-width: 520px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 40px;
+            padding: 40px 36px;
             box-shadow: var(--shadow-lg);
             animation: slideUp 0.3s ease;
             position: relative;
@@ -593,18 +709,141 @@
             transform: rotate(90deg);
         }
 
-        .modal .modal-job-title {
+        .modal h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .modal .subtitle {
+            color: var(--gray-600);
+            margin-bottom: 24px;
+        }
+
+        .modal .form-group {
+            margin-bottom: 18px;
+        }
+        .modal .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+        .modal .form-group input,
+        .modal .form-group select,
+        .modal .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: var(--font);
+            background: var(--bg-body);
+            color: var(--text-color);
+        }
+        .modal .form-group input:focus,
+        .modal .form-group select:focus,
+        .modal .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.15);
+        }
+        .modal .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal .form-group .password-hint {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        .modal .form-group .password-strength {
+            height: 4px;
+            margin-top: 6px;
+            border-radius: 4px;
+            background: var(--gray-300);
+            transition: var(--transition);
+        }
+        .modal .form-group .password-strength.weak {
+            background: var(--danger);
+            width: 33%;
+        }
+        .modal .form-group .password-strength.medium {
+            background: var(--warning);
+            width: 66%;
+        }
+        .modal .form-group .password-strength.strong {
+            background: var(--success);
+            width: 100%;
+        }
+
+        .modal .form-actions {
+            margin-top: 24px;
+        }
+        .modal .form-actions .btn {
+            width: 100%;
+            justify-content: center;
+            padding: 14px;
+        }
+        .modal .form-footer {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+        .modal .form-footer a {
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .modal .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .modal .alert {
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+            display: none;
+        }
+        .modal .alert.error {
+            background: #f8d7da;
+            color: #842029;
+            border: 1px solid #f5c2c7;
+            display: block;
+        }
+        .modal .alert.success {
+            background: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+            display: block;
+        }
+        [data-theme="dark"] .modal .alert.error {
+            background: #3a1a1a;
+            color: #ef9a9a;
+            border-color: #5a2a2a;
+        }
+        [data-theme="dark"] .modal .alert.success {
+            background: #1a3a2a;
+            color: #81c784;
+            border-color: #2a5a3a;
+        }
+
+        /* ────────────── JOB DETAIL MODAL ────────────── */
+        .modal-job-detail .modal-job-title {
             font-size: 1.8rem;
             font-weight: 800;
             margin-bottom: 4px;
         }
-        .modal .modal-company {
+        .modal-job-detail .modal-company {
             font-size: 1.1rem;
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 8px;
         }
-        .modal .modal-meta {
+        .modal-job-detail .modal-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
@@ -612,41 +851,62 @@
             color: var(--gray-600);
             margin: 12px 0 18px;
         }
-        .modal .modal-meta span {
+        .modal-job-detail .modal-meta span {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-        .modal .modal-meta i {
+        .modal-job-detail .modal-meta i {
             color: var(--primary);
         }
-
-        .modal .modal-desc {
+        .modal-job-detail .modal-desc {
             margin: 16px 0;
             line-height: 1.8;
-            color: var(--gray-700);
+            color: var(--text-color);
         }
-        .modal .modal-desc h4 {
+        .modal-job-detail .modal-desc h4 {
             margin-top: 20px;
             margin-bottom: 6px;
-            color: var(--gray-900);
+            color: var(--text-color);
         }
-        .modal .modal-desc ul {
+        .modal-job-detail .modal-desc ul {
             padding-left: 20px;
             list-style: disc;
-            color: var(--gray-700);
+            color: var(--text-color);
         }
-        .modal .modal-desc ul li {
+        .modal-job-detail .modal-desc ul li {
             margin-bottom: 4px;
         }
-
-        .modal .modal-footer {
+        .modal-job-detail .modal-footer {
             display: flex;
             gap: 12px;
             margin-top: 28px;
             flex-wrap: wrap;
-            border-top: 1px solid var(--gray-200);
+            border-top: 1px solid var(--border-color);
             padding-top: 24px;
+        }
+
+        /* ────────────── SAVED JOBS SECTION ────────────── */
+        .saved-jobs-section {
+            margin: 40px 0;
+            display: none;
+        }
+        .saved-jobs-section.visible {
+            display: block;
+        }
+
+        /* ────────────── DARK MODE TOGGLE ────────────── */
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: var(--transition);
+            padding: 4px 8px;
+        }
+        .theme-toggle:hover {
+            transform: rotate(20deg);
         }
 
         /* ────────────── FOOTER ────────────── */
@@ -718,9 +978,10 @@
                 padding: 0;
             }
             .search-box .input-group {
-                background: #fff;
+                background: var(--bg-card);
                 border-radius: var(--radius-sm);
                 padding: 0 16px;
+                border: 1px solid var(--border-color);
             }
             .search-box .btn {
                 border-radius: var(--radius-sm);
@@ -744,7 +1005,7 @@
                 flex-direction: column;
                 padding: 16px 0;
                 gap: 12px;
-                border-top: 1px solid var(--gray-200);
+                border-top: 1px solid var(--border-color);
                 margin-top: 12px;
             }
             .nav-links.open {
@@ -782,9 +1043,8 @@
 
             .modal {
                 padding: 24px;
-            }
-            .modal .modal-job-title {
-                font-size: 1.4rem;
+                max-width: 100%;
+                margin: 10px;
             }
             .categories-grid {
                 grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -792,6 +1052,17 @@
             .jobs-header {
                 flex-direction: column;
                 align-items: stretch;
+            }
+            .jobs-header .right {
+                justify-content: stretch;
+            }
+            .jobs-header .right select,
+            .jobs-header .right .btn {
+                flex: 1;
+            }
+            .pagination button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
             }
         }
 
@@ -821,6 +1092,16 @@
             background: var(--gray-400);
             border-radius: 10px;
         }
+
+        /* ─── utility ─── */
+        .hidden {
+            display: none !important;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
     </style>
 </head>
 <body>
@@ -830,18 +1111,30 @@
         <div class="container header-inner">
             <a href="#" class="logo">
                 <i class="fas fa-briefcase"></i>
-                Ethio<span>Jobs</span>
+                Ethio<span>Jobs</span> <span style="font-size:0.6rem; background:var(--primary); color:#fff; padding:2px 8px; border-radius:20px; margin-left:4px;">Pro</span>
             </a>
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div style="display:flex; align-items:center; gap:12px;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <nav class="nav-links" id="navLinks">
-                <a href="#">Home</a>
-                <a href="#">Jobs</a>
+                <a href="#" id="homeLink">Home</a>
+                <a href="#" id="savedLink">Saved Jobs</a>
                 <a href="#">Companies</a>
                 <a href="#">About</a>
-                <a href="#" class="btn btn-outline-primary btn-sm">Post a Job</a>
-                <a href="#" class="btn btn-primary btn-sm">Sign In</a>
+                <div id="authButtons">
+                    <a href="#" class="btn btn-outline-primary btn-sm" id="loginBtn">Sign In</a>
+                    <a href="#" class="btn btn-primary btn-sm" id="registerBtn">Register</a>
+                </div>
+                <div id="userPanel" style="display:none; align-items:center; gap:12px; flex-wrap:wrap;">
+                    <span class="user-greeting" id="userGreeting"></span>
+                    <a href="#" class="btn btn-success btn-sm" id="postJobBtn"><i class="fas fa-plus"></i> Post Job</a>
+                    <a href="#" class="btn btn-danger btn-sm" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -910,14 +1203,33 @@
         </div>
     </div>
 
+    <!-- ═══════════════ SAVED JOBS (hidden by default) ═══════════════ -->
+    <div class="container saved-jobs-section" id="savedJobsSection">
+        <div class="section-title">
+            <i class="fas fa-bookmark" style="color:var(--primary);"></i> Saved Jobs
+        </div>
+        <p class="section-sub">Your bookmarked positions</p>
+        <div class="jobs-grid" id="savedJobsGrid"></div>
+    </div>
+
     <!-- ═══════════════ JOB LISTINGS ═══════════════ -->
-    <section class="container jobs-section">
+    <section class="container jobs-section" id="mainJobsSection">
         <div class="jobs-header">
             <div class="left">
                 <h2><i class="fas fa-list-ul" style="color:var(--primary);"></i> Latest Jobs</h2>
                 <p id="resultCount">Showing all jobs</p>
             </div>
             <div class="right">
+                <select id="typeFilter">
+                    <option value="">All Types</option>
+                    <option value="Full-time">Full-time</option>
+                    <option value="Part-time">Part-time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Internship">Internship</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Temporary">Temporary</option>
+                    <option value="Volunteer">Volunteer</option>
+                </select>
                 <select id="sortSelect">
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
@@ -933,15 +1245,138 @@
         <div class="jobs-grid" id="jobsGrid">
             <!-- rendered by JS -->
         </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="paginationControls"></div>
     </section>
 
-    <!-- ═══════════════ MODAL ═══════════════ -->
+    <!-- ═══════════════ MODAL: Job Detail ═══════════════ -->
     <div class="modal-overlay" id="jobModal">
-        <div class="modal">
+        <div class="modal modal-job-detail">
             <button class="close-modal" id="closeModalBtn">&times;</button>
             <div id="modalBody">
                 <!-- filled by JS -->
             </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ MODAL: Login ═══════════════ -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="close-modal" id="closeLoginModal">&times;</button>
+            <h2><i class="fas fa-sign-in-alt" style="color:var(--primary);"></i> Sign In</h2>
+            <p class="subtitle">Welcome back! Log in to your EthioJobs account.</p>
+            <div id="loginAlert" class="alert"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="you@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required />
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+                </div>
+                <div class="form-footer">
+                    Don't have an account? <a id="switchToRegister">Register here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════ MODAL: Register ═══════════════ -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="close-modal" id="closeRegisterModal">&times;</button>
+            <h2><i class="fas fa-user-plus" style="color:var(--primary);"></i> Create Account</h2>
+            <p class="subtitle">Join thousands of job seekers in Ethiopia.</p>
+            <div id="registerAlert" class="alert"></div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="Abebe Kebede" required />
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="you@example.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a strong password" required />
+                    <div class="password-hint">Minimum 6 characters, at least one letter and one number.</div>
+                    <div class="password-strength" id="passwordStrength"></div>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirm">Confirm Password</label>
+                    <input type="password" id="registerConfirm" placeholder="Confirm your password" required />
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-user-plus"></i> Register</button>
+                </div>
+                <div class="form-footer">
+                    Already have an account? <a id="switchToLogin">Sign In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ═══════════════ MODAL: Post Job ═══════════════ -->
+    <div class="modal-overlay" id="postJobModal">
+        <div class="modal">
+            <button class="close-modal" id="closePostJobModal">&times;</button>
+            <h2><i class="fas fa-plus-circle" style="color:var(--primary);"></i> Post a New Job</h2>
+            <p class="subtitle">Fill in the details to list a job opening.</p>
+            <div id="postJobAlert" class="alert"></div>
+            <form id="postJobForm">
+                <div class="form-group">
+                    <label for="postTitle">Job Title</label>
+                    <input type="text" id="postTitle" placeholder="e.g. Senior Developer" required />
+                </div>
+                <div class="form-group">
+                    <label for="postCompany">Company</label>
+                    <input type="text" id="postCompany" placeholder="Company name" required />
+                </div>
+                <div class="form-group">
+                    <label for="postLocation">Location</label>
+                    <input type="text" id="postLocation" placeholder="e.g. Addis Ababa" required />
+                </div>
+                <div class="form-group">
+                    <label for="postCategory">Category</label>
+                    <input type="text" id="postCategory" placeholder="e.g. Technology" required />
+                </div>
+                <div class="form-group">
+                    <label for="postType">Job Type</label>
+                    <select id="postType">
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Temporary">Temporary</option>
+                        <option value="Volunteer">Volunteer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postSalary">Salary (e.g. 20,000 – 30,000 ETB)</label>
+                    <input type="text" id="postSalary" placeholder="e.g. 25,000 – 35,000 ETB" required />
+                </div>
+                <div class="form-group">
+                    <label for="postRemote">Remote?</label>
+                    <select id="postRemote">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="postDescription">Job Description</label>
+                    <textarea id="postDescription" rows="4" placeholder="Describe the role, requirements, and benefits..." required></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-plus-circle"></i> Post Job</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -950,7 +1385,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <h4><i class="fas fa-briefcase"></i> EthioJobs</h4>
+                    <h4><i class="fas fa-briefcase"></i> EthioJobs Pro</h4>
                     <p style="margin-bottom:12px;">Connecting Ethiopian talent with great opportunities since 2020.</p>
                     <div style="display:flex;gap:12px;font-size:1.2rem;">
                         <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -961,14 +1396,14 @@
                 </div>
                 <div>
                     <h4>For Job Seekers</h4>
-                    <a href="#">Browse Jobs</a>
+                    <a href="#" id="footerBrowseJobs">Browse Jobs</a>
+                    <a href="#" id="footerSavedJobs">Saved Jobs</a>
                     <a href="#">Career Advice</a>
-                    <a href="#">CV Tips</a>
                     <a href="#">Interview Prep</a>
                 </div>
                 <div>
                     <h4>For Employers</h4>
-                    <a href="#">Post a Job</a>
+                    <a href="#" id="footerPostJob">Post a Job</a>
                     <a href="#">Company Profile</a>
                     <a href="#">Pricing</a>
                     <a href="#">Talent Search</a>
@@ -982,17 +1417,17 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 <strong>EthioJobs</strong> — Made with <i class="fas fa-heart" style="color:#e74c3c;"></i> in Ethiopia
+                &copy; 2026 <strong>EthioJobs Pro</strong> — Made with <i class="fas fa-heart" style="color:#e74c3c;"></i> in Ethiopia
             </div>
         </div>
     </footer>
 
     <script>
         // ═══════════════════════════════════════════════════
-        //  DATA — Realistic Ethiopian job listings
+        //  DATA — Expanded realistic Ethiopian job listings (50+ jobs)
         // ═══════════════════════════════════════════════════
 
-        const jobsData = [{
+        const baseJobs = [{
             id: 1,
             title: 'Senior Software Engineer',
             company: 'Ethio Telecom',
@@ -1010,7 +1445,6 @@
           <li>Experience with cloud platforms (AWS/Azure)</li>
           <li>Bachelor's degree in Computer Science or related field</li>
         </ul>
-
         <h4>Benefits:</h4>
         <ul>
           <li>Competitive salary & performance bonuses</li>
@@ -1020,6 +1454,7 @@
         </ul>`,
             requirements: ['5+ years experience', 'Java, Spring Boot, React', 'Cloud (AWS/Azure)'],
             remote: false,
+            featured: true,
         }, {
             id: 2,
             title: 'Marketing Manager',
@@ -1040,6 +1475,7 @@
         </ul>`,
             requirements: ['4+ years marketing', 'FMCG experience', 'Digital marketing'],
             remote: false,
+            featured: false,
         }, {
             id: 3,
             title: 'Data Scientist',
@@ -1060,6 +1496,7 @@
         </ul>`,
             requirements: ['3+ years data science', 'Python, SQL, ML', 'Big data experience'],
             remote: false,
+            featured: true,
         }, {
             id: 4,
             title: 'Civil Engineer',
@@ -1080,6 +1517,7 @@
         </ul>`,
             requirements: ['3+ years civil engineering', 'Road construction', 'AutoCAD'],
             remote: false,
+            featured: false,
         }, {
             id: 5,
             title: 'Full Stack Developer (Remote)',
@@ -1100,6 +1538,7 @@
         </ul>`,
             requirements: ['4+ years full-stack', 'React, Node.js, PostgreSQL', 'APIs & microservices'],
             remote: true,
+            featured: true,
         }, {
             id: 6,
             title: 'Accountant',
@@ -1120,6 +1559,7 @@
         </ul>`,
             requirements: ['2+ years accounting', 'IFRS knowledge', 'Accounting software'],
             remote: false,
+            featured: false,
         }, {
             id: 7,
             title: 'Project Manager',
@@ -1140,6 +1580,7 @@
         </ul>`,
             requirements: ['7+ years project management', 'NGO/development experience', 'PMP preferred'],
             remote: false,
+            featured: false,
         }, {
             id: 8,
             title: 'Sales Representative',
@@ -1160,6 +1601,7 @@
         </ul>`,
             requirements: ['1+ year sales', 'Communication skills', 'Fast-paced environment'],
             remote: false,
+            featured: false,
         }, {
             id: 9,
             title: 'UX/UI Designer',
@@ -1180,6 +1622,7 @@
         </ul>`,
             requirements: ['3+ years UX/UI', 'Figma / Adobe XD', 'Strong portfolio'],
             remote: false,
+            featured: false,
         }, {
             id: 10,
             title: 'Operations Manager',
@@ -1200,14 +1643,15 @@
         </ul>`,
             requirements: ['5+ years operations', 'Supply chain management', 'Leadership skills'],
             remote: false,
+            featured: false,
         }, {
             id: 11,
             title: 'Junior Developer',
             company: 'ICE Addis',
             location: 'Addis Ababa',
             category: 'Technology',
-            type: 'Full-time',
-            salary: '18,000 – 28,000 ETB',
+            type: 'Internship',
+            salary: '8,000 – 12,000 ETB',
             posted: '2026-06-25',
             description: `ICE Addis is looking for a passionate Junior Developer to join our growing team.
 
@@ -1220,6 +1664,7 @@
         </ul>`,
             requirements: ['0–2 years development', 'HTML, CSS, JavaScript', 'Eagerness to learn'],
             remote: false,
+            featured: false,
         }, {
             id: 12,
             title: 'Health Officer',
@@ -1240,14 +1685,15 @@
         </ul>`,
             requirements: ['5+ years public health', 'Health program management', 'MPH degree'],
             remote: false,
+            featured: false,
         }, {
             id: 13,
             title: 'Content Creator',
             company: 'Shega Media',
             location: 'Addis Ababa',
             category: 'Media',
-            type: 'Part-time',
-            salary: '12,000 – 20,000 ETB',
+            type: 'Freelance',
+            salary: '10,000 – 18,000 ETB',
             posted: '2026-06-23',
             description: `Shega Media is looking for a creative Content Creator to produce engaging content for our platforms.
 
@@ -1260,6 +1706,7 @@
         </ul>`,
             requirements: ['1+ year content creation', 'Writing & editing', 'Social media'],
             remote: true,
+            featured: false,
         }, {
             id: 14,
             title: 'Electrical Engineer',
@@ -1280,6 +1727,7 @@
         </ul>`,
             requirements: ['3+ years electrical engineering', 'Power systems', 'Safety standards'],
             remote: false,
+            featured: false,
         }, {
             id: 15,
             title: 'Customer Service Manager',
@@ -1300,20 +1748,723 @@
         </ul>`,
             requirements: ['4+ years CS management', 'Leadership skills', 'Telecom experience a plus'],
             remote: false,
+            featured: false,
+        }, {
+            id: 16,
+            title: 'Graphic Designer (Remote)',
+            company: 'Creative Hub',
+            location: 'Remote',
+            category: 'Design',
+            type: 'Freelance',
+            salary: '15,000 – 25,000 ETB',
+            posted: '2026-06-20',
+            description: `Creative Hub is seeking a talented Graphic Designer for various client projects.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>2+ years of graphic design experience</li>
+          <li>Proficiency in Adobe Creative Suite (Photoshop, Illustrator)</li>
+          <li>Strong portfolio</li>
+          <li>Ability to work independently</li>
+        </ul>`,
+            requirements: ['2+ years design', 'Adobe Suite', 'Strong portfolio'],
+            remote: true,
+            featured: false,
+        }, {
+            id: 17,
+            title: 'HR Assistant',
+            company: 'Dashen Bank',
+            location: 'Addis Ababa',
+            category: 'Finance',
+            type: 'Internship',
+            salary: '6,000 – 9,000 ETB',
+            posted: '2026-06-19',
+            description: `Dashen Bank is offering an internship opportunity for recent graduates in HR.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Recent graduate in HR, Business, or related</li>
+          <li>Good communication skills</li>
+          <li>Basic knowledge of HR practices</li>
+        </ul>`,
+            requirements: ['Recent graduate', 'Communication skills', 'HR knowledge'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 18,
+            title: 'Logistics Coordinator',
+            company: 'Zemen Logistics',
+            location: 'Dire Dawa',
+            category: 'Management',
+            type: 'Temporary',
+            salary: '18,000 – 26,000 ETB',
+            posted: '2026-06-18',
+            description: `Zemen Logistics needs a Logistics Coordinator for a 6-month project.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>2+ years in logistics or supply chain</li>
+          <li>Strong organizational skills</li>
+          <li>Knowledge of inventory management</li>
+        </ul>`,
+            requirements: ['2+ years logistics', 'Organizational skills', 'Inventory management'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 19,
+            title: 'Volunteer Teacher',
+            company: 'Ethiopia Reads',
+            location: 'Gondar',
+            category: 'Education',
+            type: 'Volunteer',
+            salary: 'Stipend only',
+            posted: '2026-06-17',
+            description: `Ethiopia Reads is looking for passionate volunteers to teach English in Gondar.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Bachelor's degree</li>
+          <li>Teaching experience is a plus</li>
+          <li>Commitment for at least 3 months</li>
+        </ul>`,
+            requirements: ['Bachelor's degree', 'Teaching experience a plus', 'Commitment'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 20,
+            title: 'React Developer',
+            company: 'Apposit',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '30,000 – 45,000 ETB',
+            posted: '2026-06-16',
+            description: `Apposit is hiring a React Developer to build modern web applications.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of React experience</li>
+          <li>Experience with Redux and RESTful APIs</li>
+          <li>Strong JavaScript skills</li>
+        </ul>`,
+            requirements: ['3+ years React', 'Redux, REST', 'JavaScript'],
+            remote: false,
+            featured: true,
+        }, {
+            id: 21,
+            title: 'Social Media Manager',
+            company: 'EthioChicken',
+            location: 'Addis Ababa',
+            category: 'Marketing',
+            type: 'Part-time',
+            salary: '12,000 – 18,000 ETB',
+            posted: '2026-06-15',
+            description: `EthioChicken is looking for a part-time Social Media Manager.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Experience managing social media accounts</li>
+          <li>Content creation skills</li>
+          <li>Knowledge of analytics tools</li>
+        </ul>`,
+            requirements: ['Social media experience', 'Content creation', 'Analytics'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 22,
+            title: 'Network Engineer',
+            company: 'Ethio Telecom',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Contract',
+            salary: '40,000 – 55,000 ETB',
+            posted: '2026-06-14',
+            description: `Ethio Telecom requires a Network Engineer for a 1-year contract.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>CCNA/CCNP certification</li>
+          <li>Experience with Cisco equipment</li>
+          <li>Knowledge of network security</li>
+        </ul>`,
+            requirements: ['CCNA/CCNP', 'Cisco experience', 'Network security'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 23,
+            title: 'Copywriter',
+            company: 'Shega Media',
+            location: 'Remote',
+            category: 'Media',
+            type: 'Freelance',
+            salary: '8,000 – 15,000 ETB',
+            posted: '2026-06-13',
+            description: `Shega Media needs a freelance copywriter for various projects.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Excellent writing skills in English and Amharic</li>
+          <li>Portfolio of published work</li>
+          <li>Ability to meet deadlines</li>
+        </ul>`,
+            requirements: ['Writing skills', 'Portfolio', 'Deadline-driven'],
+            remote: true,
+            featured: false,
+        }, {
+            id: 24,
+            title: 'Project Assistant',
+            company: 'UNDP Ethiopia',
+            location: 'Addis Ababa',
+            category: 'Management',
+            type: 'Internship',
+            salary: '10,000 – 14,000 ETB',
+            posted: '2026-06-12',
+            description: `UNDP is offering an internship for recent graduates to assist with project coordination.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Bachelor's degree in any field</li>
+          <li>Strong organizational skills</li>
+          <li>Proficiency in Microsoft Office</li>
+        </ul>`,
+            requirements: ['Bachelor's degree', 'Organizational skills', 'MS Office'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 25,
+            title: 'Sales Manager',
+            company: 'Kifiya Financial Technology',
+            location: 'Addis Ababa',
+            category: 'Sales',
+            type: 'Full-time',
+            salary: '35,000 – 50,000 ETB',
+            posted: '2026-06-11',
+            description: `Kifiya is seeking a Sales Manager to lead our B2B sales team.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>5+ years of sales management experience</li>
+          <li>Experience in fintech or financial services</li>
+          <li>Strong leadership and negotiation skills</li>
+        </ul>`,
+            requirements: ['5+ years sales management', 'Fintech experience', 'Leadership'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 26,
+            title: 'Web Designer',
+            company: 'Rensys Technologies',
+            location: 'Addis Ababa',
+            category: 'Design',
+            type: 'Temporary',
+            salary: '20,000 – 30,000 ETB',
+            posted: '2026-06-10',
+            description: `Rensys needs a Web Designer for a 3-month project.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of web design experience</li>
+          <li>Proficiency in HTML, CSS, and WordPress</li>
+          <li>Experience with responsive design</li>
+        </ul>`,
+            requirements: ['3+ years web design', 'HTML, CSS, WordPress', 'Responsive design'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 27,
+            title: 'Financial Analyst',
+            company: 'Bank of Abyssinia',
+            location: 'Addis Ababa',
+            category: 'Finance',
+            type: 'Full-time',
+            salary: '30,000 – 42,000 ETB',
+            posted: '2026-06-09',
+            description: `Bank of Abyssinia is looking for a Financial Analyst to join our investment team.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of financial analysis</li>
+          <li>CFA or similar certification preferred</li>
+          <li>Strong Excel and modeling skills</li>
+        </ul>`,
+            requirements: ['3+ years financial analysis', 'CFA preferred', 'Excel modeling'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 28,
+            title: 'Community Manager',
+            company: 'Ethiopia Reads',
+            location: 'Bahir Dar',
+            category: 'Education',
+            type: 'Volunteer',
+            salary: 'Stipend only',
+            posted: '2026-06-08',
+            description: `Ethiopia Reads is looking for a Community Manager to engage with local communities.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Experience in community outreach</li>
+          <li>Strong interpersonal skills</li>
+          <li>Ability to work with diverse groups</li>
+        </ul>`,
+            requirements: ['Community outreach', 'Interpersonal skills', 'Diversity'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 29,
+            title: 'DevOps Engineer',
+            company: 'Gebeya Inc.',
+            location: 'Remote',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '50,000 – 70,000 ETB',
+            posted: '2026-06-07',
+            description: `Gebeya is hiring a DevOps Engineer to manage our cloud infrastructure.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>4+ years of DevOps experience</li>
+          <li>Experience with Docker, Kubernetes, and CI/CD</li>
+          <li>Cloud certifications (AWS, GCP) preferred</li>
+        </ul>`,
+            requirements: ['4+ years DevOps', 'Docker, Kubernetes, CI/CD', 'Cloud certifications'],
+            remote: true,
+            featured: true,
+        }, {
+            id: 30,
+            title: 'HR Manager',
+            company: 'Dashen Brewery',
+            location: 'Addis Ababa',
+            category: 'Management',
+            type: 'Full-time',
+            salary: '35,000 – 50,000 ETB',
+            posted: '2026-06-06',
+            description: `Dashen Brewery is seeking an HR Manager to oversee human resources operations.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>5+ years of HR management experience</li>
+          <li>Knowledge of Ethiopian labor law</li>
+          <li>Strong leadership and communication skills</li>
+        </ul>`,
+            requirements: ['5+ years HR management', 'Labor law knowledge', 'Leadership'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 31,
+            title: 'Mobile Developer (Flutter)',
+            company: 'Apposit',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '35,000 – 50,000 ETB',
+            posted: '2026-06-05',
+            description: `Apposit is looking for a Flutter developer to build cross-platform mobile apps.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>2+ years of Flutter development</li>
+          <li>Experience with REST APIs and state management</li>
+          <li>Published apps on Play Store/App Store</li>
+        </ul>`,
+            requirements: ['2+ years Flutter', 'REST APIs', 'Published apps'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 32,
+            title: 'Business Analyst',
+            company: 'Kifiya Financial Technology',
+            location: 'Addis Ababa',
+            category: 'Finance',
+            type: 'Full-time',
+            salary: '30,000 – 45,000 ETB',
+            posted: '2026-06-04',
+            description: `Kifiya needs a Business Analyst to bridge the gap between business and tech.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of business analysis</li>
+          <li>Experience in fintech or banking</li>
+          <li>Strong communication and analytical skills</li>
+        </ul>`,
+            requirements: ['3+ years BA', 'Fintech experience', 'Analytical skills'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 33,
+            title: 'English Teacher',
+            company: 'British Council Ethiopia',
+            location: 'Addis Ababa',
+            category: 'Education',
+            type: 'Part-time',
+            salary: '20,000 – 28,000 ETB',
+            posted: '2026-06-03',
+            description: `British Council is hiring an English teacher for adult education.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>TEFL/CELTA certification</li>
+          <li>2+ years of teaching experience</li>
+          <li>Native-level English proficiency</li>
+        </ul>`,
+            requirements: ['TEFL/CELTA', '2+ years teaching', 'Native English'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 34,
+            title: 'Procurement Officer',
+            company: 'Ethiopian Roads Authority',
+            location: 'Addis Ababa',
+            category: 'Management',
+            type: 'Contract',
+            salary: '25,000 – 35,000 ETB',
+            posted: '2026-06-02',
+            description: `Ethiopian Roads Authority needs a Procurement Officer for a 1-year contract.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of procurement experience</li>
+          <li>Knowledge of Ethiopian public procurement laws</li>
+          <li>Bachelor's degree in Business or related</li>
+        </ul>`,
+            requirements: ['3+ years procurement', 'Public procurement laws', 'Bachelor's degree'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 35,
+            title: 'Content Writer (Amharic)',
+            company: 'Shega Media',
+            location: 'Addis Ababa',
+            category: 'Media',
+            type: 'Freelance',
+            salary: '10,000 – 16,000 ETB',
+            posted: '2026-06-01',
+            description: `Shega Media needs a freelance content writer fluent in Amharic.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Excellent Amharic writing skills</li>
+          <li>Experience in journalism or content creation</li>
+          <li>Ability to meet deadlines</li>
+        </ul>`,
+            requirements: ['Amharic writing', 'Journalism experience', 'Deadline-driven'],
+            remote: true,
+            featured: false,
+        }, {
+            id: 36,
+            title: 'IT Support Specialist',
+            company: 'Bank of Abyssinia',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '22,000 – 30,000 ETB',
+            posted: '2026-05-31',
+            description: `Bank of Abyssinia is hiring an IT Support Specialist to assist with hardware and software issues.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>2+ years of IT support experience</li>
+          <li>Knowledge of Windows, networking, and troubleshooting</li>
+          <li>Good communication skills</li>
+        </ul>`,
+            requirements: ['2+ years IT support', 'Windows/Networking', 'Communication'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 37,
+            title: 'Research Analyst',
+            company: 'UNDP Ethiopia',
+            location: 'Addis Ababa',
+            category: 'Management',
+            type: 'Contract',
+            salary: '40,000 – 55,000 ETB',
+            posted: '2026-05-30',
+            description: `UNDP is looking for a Research Analyst for a development project.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Master's degree in Economics, Development, or related</li>
+          <li>Experience in data analysis and report writing</li>
+          <li>Knowledge of statistical software (STATA, SPSS)</li>
+        </ul>`,
+            requirements: ['Master's degree', 'Data analysis', 'STATA/SPSS'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 38,
+            title: 'Construction Supervisor',
+            company: 'Zemen Logistics',
+            location: 'Bahir Dar',
+            category: 'Engineering',
+            type: 'Temporary',
+            salary: '30,000 – 40,000 ETB',
+            posted: '2026-05-29',
+            description: `Zemen Logistics needs a Construction Supervisor for a warehouse project.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>5+ years of construction supervision</li>
+          <li>Knowledge of building codes and safety</li>
+          <li>Project management skills</li>
+        </ul>`,
+            requirements: ['5+ years supervision', 'Building codes', 'Project management'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 39,
+            title: 'Customer Support Agent',
+            company: 'Ethio Telecom',
+            location: 'Addis Ababa',
+            category: 'Customer Service',
+            type: 'Full-time',
+            salary: '18,000 – 25,000 ETB',
+            posted: '2026-05-28',
+            description: `Ethio Telecom is hiring Customer Support Agents for call center operations.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Excellent communication skills</li>
+          <li>Experience in customer service</li>
+          <li>Ability to handle high call volume</li>
+        </ul>`,
+            requirements: ['Communication skills', 'Customer service experience', 'Call center'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 40,
+            title: 'Financial Controller',
+            company: 'Dashen Brewery',
+            location: 'Addis Ababa',
+            category: 'Finance',
+            type: 'Full-time',
+            salary: '45,000 – 65,000 ETB',
+            posted: '2026-05-27',
+            description: `Dashen Brewery is looking for a Financial Controller to oversee accounting and reporting.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>7+ years of financial management</li>
+          <li>CPA or ACCA certification</li>
+          <li>Experience in manufacturing or FMCG</li>
+        </ul>`,
+            requirements: ['7+ years financial management', 'CPA/ACCA', 'FMCG experience'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 41,
+            title: 'Graphic Designer (Print)',
+            company: 'Creative Hub',
+            location: 'Addis Ababa',
+            category: 'Design',
+            type: 'Full-time',
+            salary: '20,000 – 30,000 ETB',
+            posted: '2026-05-26',
+            description: `Creative Hub needs a Graphic Designer specializing in print media.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of print design experience</li>
+          <li>Proficiency in InDesign, Illustrator, Photoshop</li>
+          <li>Knowledge of pre-press processes</li>
+        </ul>`,
+            requirements: ['3+ years print design', 'Adobe Suite', 'Pre-press'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 42,
+            title: 'NGO Program Coordinator',
+            company: 'Ethiopia Reads',
+            location: 'Hawassa',
+            category: 'Management',
+            type: 'Full-time',
+            salary: '30,000 – 40,000 ETB',
+            posted: '2026-05-25',
+            description: `Ethiopia Reads is hiring a Program Coordinator for our Hawassa office.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of NGO program coordination</li>
+          <li>Experience with community development</li>
+          <li>Strong organizational and reporting skills</li>
+        </ul>`,
+            requirements: ['3+ years NGO coordination', 'Community development', 'Reporting'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 43,
+            title: 'Python Developer',
+            company: 'Kifiya Financial Technology',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '40,000 – 55,000 ETB',
+            posted: '2026-05-24',
+            description: `Kifiya is looking for a Python Developer to build backend services.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years of Python development</li>
+          <li>Experience with Django/Flask</li>
+          <li>Knowledge of databases and APIs</li>
+        </ul>`,
+            requirements: ['3+ years Python', 'Django/Flask', 'APIs'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 44,
+            title: 'Sales Executive',
+            company: 'EthioChicken',
+            location: 'Jimma',
+            category: 'Sales',
+            type: 'Full-time',
+            salary: '18,000 – 26,000 ETB',
+            posted: '2026-05-23',
+            description: `EthioChicken needs a Sales Executive to expand our market in Jimma.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>1+ year of sales experience</li>
+          <li>Knowledge of the poultry industry is a plus</li>
+          <li>Willing to travel</li>
+        </ul>`,
+            requirements: ['1+ year sales', 'Poultry industry a plus', 'Willing to travel'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 45,
+            title: 'UI/UX Lead',
+            company: 'Rensys Technologies',
+            location: 'Addis Ababa',
+            category: 'Design',
+            type: 'Full-time',
+            salary: '40,000 – 55,000 ETB',
+            posted: '2026-05-22',
+            description: `Rensys is looking for a UI/UX Lead to mentor the design team.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>5+ years of UI/UX design</li>
+          <li>Experience leading design projects</li>
+          <li>Strong portfolio and design systems knowledge</li>
+        </ul>`,
+            requirements: ['5+ years UI/UX', 'Leadership', 'Design systems'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 46,
+            title: 'Supply Chain Analyst',
+            company: 'Zemen Logistics',
+            location: 'Dire Dawa',
+            category: 'Management',
+            type: 'Full-time',
+            salary: '28,000 – 38,000 ETB',
+            posted: '2026-05-21',
+            description: `Zemen Logistics needs a Supply Chain Analyst to optimize our operations.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>3+ years in supply chain analysis</li>
+          <li>Experience with ERP systems</li>
+          <li>Strong analytical and problem-solving skills</li>
+        </ul>`,
+            requirements: ['3+ years supply chain', 'ERP systems', 'Analytical skills'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 47,
+            title: 'Social Media Intern',
+            company: 'Shega Media',
+            location: 'Addis Ababa',
+            category: 'Media',
+            type: 'Internship',
+            salary: '5,000 – 8,000 ETB',
+            posted: '2026-05-20',
+            description: `Shega Media is offering a social media internship for recent graduates.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>Recent graduate in Marketing, Media, or related</li>
+          <li>Familiar with social media platforms</li>
+          <li>Creative and eager to learn</li>
+        </ul>`,
+            requirements: ['Recent graduate', 'Social media knowledge', 'Creativity'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 48,
+            title: 'Senior Accountant',
+            company: 'Bank of Abyssinia',
+            location: 'Addis Ababa',
+            category: 'Finance',
+            type: 'Full-time',
+            salary: '35,000 – 48,000 ETB',
+            posted: '2026-05-19',
+            description: `Bank of Abyssinia is hiring a Senior Accountant to handle complex reporting.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>5+ years of accounting experience</li>
+          <li>CPA or ACCA preferred</li>
+          <li>Experience with banking regulations</li>
+        </ul>`,
+            requirements: ['5+ years accounting', 'CPA/ACCA', 'Banking regulations'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 49,
+            title: 'React Native Developer',
+            company: 'Apposit',
+            location: 'Addis Ababa',
+            category: 'Technology',
+            type: 'Full-time',
+            salary: '35,000 – 50,000 ETB',
+            posted: '2026-05-18',
+            description: `Apposit is looking for a React Native developer to build mobile apps.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>2+ years of React Native experience</li>
+          <li>Experience with Redux and native modules</li>
+          <li>Published apps on Play Store/App Store</li>
+        </ul>`,
+            requirements: ['2+ years React Native', 'Redux', 'Published apps'],
+            remote: false,
+            featured: false,
+        }, {
+            id: 50,
+            title: 'Logistics Assistant',
+            company: 'Zemen Logistics',
+            location: 'Adama',
+            category: 'Management',
+            type: 'Full-time',
+            salary: '20,000 – 28,000 ETB',
+            posted: '2026-05-17',
+            description: `Zemen Logistics needs a Logistics Assistant to support operations in Adama.
+
+        <h4>Requirements:</h4>
+        <ul>
+          <li>1+ year in logistics or administration</li>
+          <li>Good organizational skills</li>
+          <li>Proficiency in MS Office</li>
+        </ul>`,
+            requirements: ['1+ year logistics', 'Organizational skills', 'MS Office'],
+            remote: false,
+            featured: false,
         }];
 
         // ─── categories ───
         const categories = [
-            { name: 'Technology', icon: 'fa-code', count: 0 },
-            { name: 'Marketing', icon: 'fa-bullhorn', count: 0 },
-            { name: 'Finance', icon: 'fa-chart-line', count: 0 },
-            { name: 'Engineering', icon: 'fa-hard-hat', count: 0 },
-            { name: 'Management', icon: 'fa-users-cog', count: 0 },
-            { name: 'Sales', icon: 'fa-handshake', count: 0 },
-            { name: 'Design', icon: 'fa-paint-brush', count: 0 },
-            { name: 'Healthcare', icon: 'fa-heartbeat', count: 0 },
-            { name: 'Media', icon: 'fa-video', count: 0 },
-            { name: 'Customer Service', icon: 'fa-headset', count: 0 },
+            { name: 'Technology', icon: 'fa-code' },
+            { name: 'Marketing', icon: 'fa-bullhorn' },
+            { name: 'Finance', icon: 'fa-chart-line' },
+            { name: 'Engineering', icon: 'fa-hard-hat' },
+            { name: 'Management', icon: 'fa-users-cog' },
+            { name: 'Sales', icon: 'fa-handshake' },
+            { name: 'Design', icon: 'fa-paint-brush' },
+            { name: 'Healthcare', icon: 'fa-heartbeat' },
+            { name: 'Media', icon: 'fa-video' },
+            { name: 'Customer Service', icon: 'fa-headset' },
+            { name: 'Education', icon: 'fa-graduation-cap' },
         ];
 
         // ─── helpers ───
@@ -1334,22 +2485,36 @@
                 'Part-time': 'parttime',
                 'Contract': 'contract',
                 'Internship': 'internship',
+                'Freelance': 'freelance',
+                'Temporary': 'temporary',
+                'Volunteer': 'volunteer',
             };
             return map[type] || 'fulltime';
         }
 
         // ─── state ───
+        let jobsData = [...baseJobs];
         let filteredJobs = [...jobsData];
         let currentSort = 'newest';
         let searchTerm = '';
         let locationTerm = '';
+        let typeTerm = '';
+        let currentUser = null;
+        let savedJobs = JSON.parse(localStorage.getItem('ethiojobs_saved')) || [];
+        let currentPage = 1;
+        const perPage = 8;
+        let showingSaved = false;
 
         // ─── DOM refs ───
         const jobsGrid = document.getElementById('jobsGrid');
+        const savedJobsGrid = document.getElementById('savedJobsGrid');
+        const savedJobsSection = document.getElementById('savedJobsSection');
+        const mainJobsSection = document.getElementById('mainJobsSection');
         const resultCount = document.getElementById('resultCount');
         const jobCountEl = document.getElementById('jobCount');
         const searchInput = document.getElementById('searchInput');
         const locationFilter = document.getElementById('locationFilter');
+        const typeFilter = document.getElementById('typeFilter');
         const sortSelect = document.getElementById('sortSelect');
         const resetBtn = document.getElementById('resetFiltersBtn');
         const modalOverlay = document.getElementById('jobModal');
@@ -1359,11 +2524,40 @@
         const searchForm = document.getElementById('searchForm');
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
+        const paginationControls = document.getElementById('paginationControls');
+
+        // Auth modals
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const closeLoginBtn = document.getElementById('closeLoginModal');
+        const closeRegisterBtn = document.getElementById('closeRegisterModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.getElementById('registerBtn');
+        const switchToRegister = document.getElementById('switchToRegister');
+        const switchToLogin = document.getElementById('switchToLogin');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const loginAlert = document.getElementById('loginAlert');
+        const registerAlert = document.getElementById('registerAlert');
+        const authButtons = document.getElementById('authButtons');
+        const userPanel = document.getElementById('userPanel');
+        const userGreeting = document.getElementById('userGreeting');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const postJobBtn = document.getElementById('postJobBtn');
+        const postJobModal = document.getElementById('postJobModal');
+        const closePostJobBtn = document.getElementById('closePostJobModal');
+        const postJobForm = document.getElementById('postJobForm');
+        const postJobAlert = document.getElementById('postJobAlert');
+        const footerPostJob = document.getElementById('footerPostJob');
+        const savedLink = document.getElementById('savedLink');
+        const homeLink = document.getElementById('homeLink');
+        const footerSavedJobs = document.getElementById('footerSavedJobs');
+        const footerBrowseJobs = document.getElementById('footerBrowseJobs');
+        const themeToggle = document.getElementById('themeToggle');
 
         // ─── render functions ───
 
         function renderCategories() {
-            // count jobs per category
             const catMap = {};
             jobsData.forEach(j => {
                 catMap[j.category] = (catMap[j.category] || 0) + 1;
@@ -1381,39 +2575,49 @@
             </div>
           `).join('');
 
-            // click on category → filter
             document.querySelectorAll('.category-card').forEach(el => {
                 el.addEventListener('click', () => {
                     const cat = el.dataset.category;
                     searchInput.value = '';
                     locationFilter.value = '';
+                    typeFilter.value = '';
                     searchTerm = '';
                     locationTerm = '';
-                    applyFilters({ category: cat });
+                    typeTerm = '';
+                    showingSaved = false;
+                    savedJobsSection.classList.remove('visible');
+                    mainJobsSection.style.display = 'block';
+                    applyFilters({ category: cat, page: 1 });
                 });
             });
         }
 
-        function renderJobs(jobs) {
+        function renderJobs(jobs, gridElement, page = 1, total = jobs.length) {
+            if (!gridElement) return;
             if (!jobs || jobs.length === 0) {
-                jobsGrid.innerHTML = `
+                gridElement.innerHTML = `
               <div class="empty-state">
                 <i class="fas fa-search"></i>
                 <h3>No jobs found</h3>
                 <p>Try adjusting your search or filters.</p>
               </div>
             `;
-                resultCount.textContent = '0 jobs found';
                 return;
             }
 
-            jobsGrid.innerHTML = jobs.map(job => {
+            const start = (page - 1) * perPage;
+            const end = Math.min(start + perPage, jobs.length);
+            const pageItems = jobs.slice(start, end);
+
+            gridElement.innerHTML = pageItems.map(job => {
                 const tagClass = getTypeTagClass(job.type);
                 const remoteTag = job.remote ? '<span class="tag remote">Remote</span>' : '';
+                const featuredTag = job.featured ? '<span class="tag" style="background:#ffd700;color:#000;">Featured</span>' : '';
+                const saved = savedJobs.includes(job.id) ? '❤️' : '🤍';
                 return `
               <div class="job-card" data-id="${job.id}">
                 <div class="job-info">
-                  <h3>${job.title}</h3>
+                  <h3>${job.title} ${featuredTag}</h3>
                   <div class="company"><i class="fas fa-building"></i> ${job.company}</div>
                   <div class="meta">
                     <span><i class="fas fa-map-marker-alt"></i> ${job.location}</span>
@@ -1429,35 +2633,108 @@
                 <div class="job-actions">
                   <div class="salary">${job.salary}</div>
                   <div class="posted">Posted ${formatDate(job.posted)}</div>
-                  <button class="btn btn-primary btn-sm view-job-btn" data-id="${job.id}">
-                    <i class="fas fa-eye"></i> View
-                  </button>
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <button class="btn btn-primary btn-sm view-job-btn" data-id="${job.id}">
+                      <i class="fas fa-eye"></i> View
+                    </button>
+                    <button class="btn btn-sm save-job-btn" data-id="${job.id}" style="background:transparent; border:1px solid var(--border-color);">
+                      <i class="fas fa-heart" style="color:${savedJobs.includes(job.id) ? '#e74c3c' : 'var(--gray-500)'};"></i>
+                    </button>
+                  </div>
                 </div>
               </div>
             `;
             }).join('');
 
-            // update result count
-            resultCount.textContent = `Showing ${jobs.length} job${jobs.length > 1 ? 's' : ''}`;
-
-            // attach view listeners
-            document.querySelectorAll('.view-job-btn').forEach(btn => {
+            // Attach view listeners
+            gridElement.querySelectorAll('.view-job-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = parseInt(btn.dataset.id);
                     const job = jobsData.find(j => j.id === id);
-                    if (job) openModal(job);
+                    if (job) openJobModal(job);
                 });
             });
 
-            // click on card also opens
-            document.querySelectorAll('.job-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const id = parseInt(card.dataset.id);
-                    const job = jobsData.find(j => j.id === id);
-                    if (job) openModal(job);
+            // Save/unsave listeners
+            gridElement.querySelectorAll('.save-job-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(btn.dataset.id);
+                    toggleSaved(id);
                 });
             });
+
+            // Click on card opens detail
+            gridElement.querySelectorAll('.job-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (e.target.closest('button')) return;
+                    const id = parseInt(card.dataset.id);
+                    const job = jobsData.find(j => j.id === id);
+                    if (job) openJobModal(job);
+                });
+            });
+
+            // Pagination for main grid only
+            if (gridElement === jobsGrid) {
+                renderPagination(page, Math.ceil(total / perPage));
+            }
+        }
+
+        function renderPagination(currentPage, totalPages) {
+            if (totalPages <= 1) {
+                paginationControls.innerHTML = '';
+                return;
+            }
+            let html = '';
+            html += `<button ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></button>`;
+            for (let i = 1; i <= totalPages; i++) {
+                html += `<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+            }
+            html += `<button ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></button>`;
+            paginationControls.innerHTML = html;
+
+            paginationControls.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const page = parseInt(btn.dataset.page);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                        applyFilters({ page });
+                    }
+                });
+            });
+        }
+
+        function toggleSaved(jobId) {
+            const index = savedJobs.indexOf(jobId);
+            if (index > -1) {
+                savedJobs.splice(index, 1);
+            } else {
+                savedJobs.push(jobId);
+            }
+            localStorage.setItem('ethiojobs_saved', JSON.stringify(savedJobs));
+            // Re-render both grids if visible
+            if (!showingSaved) {
+                const totalFiltered = filteredJobs.length;
+                renderJobs(filteredJobs, jobsGrid, currentPage, totalFiltered);
+            } else {
+                renderSavedJobs();
+            }
+            // Update any open modals? Not needed.
+        }
+
+        function renderSavedJobs() {
+            const savedJobItems = jobsData.filter(j => savedJobs.includes(j.id));
+            if (savedJobItems.length === 0) {
+                savedJobsGrid.innerHTML = `
+              <div class="empty-state">
+                <i class="fas fa-bookmark"></i>
+                <h3>No saved jobs</h3>
+                <p>Start saving jobs you're interested in!</p>
+              </div>
+            `;
+            } else {
+                renderJobs(savedJobItems, savedJobsGrid, 1, savedJobItems.length);
+            }
         }
 
         // ─── filtering & sorting ───
@@ -1465,14 +2742,17 @@
         function applyFilters(override = {}) {
             let term = override.search !== undefined ? override.search : searchTerm;
             let loc = override.location !== undefined ? override.location : locationTerm;
+            let type = override.type !== undefined ? override.type : typeTerm;
             let cat = override.category || '';
+            let page = override.page || 1;
 
-            // if category override, set search/location empty
             if (override.category) {
                 term = '';
                 loc = '';
+                type = '';
                 searchInput.value = '';
                 locationFilter.value = '';
+                typeFilter.value = '';
             }
 
             let filtered = jobsData.filter(job => {
@@ -1480,17 +2760,23 @@
                     job.company.toLowerCase().includes(term.toLowerCase()) ||
                     job.category.toLowerCase().includes(term.toLowerCase());
                 const matchLoc = loc === '' || job.location.toLowerCase().includes(loc.toLowerCase());
+                const matchType = type === '' || job.type === type;
                 const matchCat = cat === '' || job.category === cat;
-                return matchTitle && matchLoc && matchCat;
+                return matchTitle && matchLoc && matchType && matchCat;
             });
 
-            // sort
             const sortVal = override.sort || currentSort;
             filtered = sortJobs(filtered, sortVal);
 
             filteredJobs = filtered;
-            renderJobs(filtered);
-            updateStats();
+            currentPage = page;
+            showingSaved = false;
+            savedJobsSection.classList.remove('visible');
+            mainJobsSection.style.display = 'block';
+            const total = filtered.length;
+            renderJobs(filtered, jobsGrid, page, total);
+            updateStats(filtered.length);
+            resultCount.textContent = `Showing ${filtered.length} job${filtered.length > 1 ? 's' : ''}`;
         }
 
         function sortJobs(jobs, sortType) {
@@ -1513,14 +2799,15 @@
             }
         }
 
-        function updateStats() {
-            jobCountEl.textContent = filteredJobs.length;
+        function updateStats(count) {
+            jobCountEl.textContent = count;
         }
 
-        // ─── modal ───
+        // ─── job modal ───
 
-        function openModal(job) {
+        function openJobModal(job) {
             const remoteBadge = job.remote ? '<span class="tag remote">Remote</span>' : '';
+            const saved = savedJobs.includes(job.id);
             modalBody.innerHTML = `
             <button class="close-modal" id="closeModalBtnInner">&times;</button>
             <h2 class="modal-job-title">${job.title}</h2>
@@ -1543,18 +2830,25 @@
             <div class="modal-footer">
               <button class="btn btn-success" id="applyBtn"><i class="fas fa-paper-plane"></i> Apply Now</button>
               <button class="btn btn-outline-primary" id="shareBtn"><i class="fas fa-share-alt"></i> Share</button>
-              <button class="btn btn-outline-primary" id="saveBtn"><i class="fas fa-bookmark"></i> Save</button>
+              <button class="btn ${saved ? 'btn-danger' : 'btn-outline-primary'}" id="saveModalBtn">
+                <i class="fas fa-heart"></i> ${saved ? 'Unsave' : 'Save'}
+              </button>
             </div>
           `;
             modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // close handlers
             const closeInner = document.getElementById('closeModalBtnInner');
-            if (closeInner) closeInner.addEventListener('click', closeModal);
+            if (closeInner) closeInner.addEventListener('click', closeJobModal);
             document.getElementById('applyBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    alert('⚠️ Please log in to apply for this job.');
+                    closeJobModal();
+                    openLoginModal();
+                    return;
+                }
                 alert(`✅ Application submitted for "${job.title}" at ${job.company}!\n\nWe'll contact you soon.`);
-                closeModal();
+                closeJobModal();
             });
             document.getElementById('shareBtn')?.addEventListener('click', () => {
                 if (navigator.share) {
@@ -1569,72 +2863,423 @@
                         .catch(() => alert('Share: ' + job.title + ' at ' + job.company));
                 }
             });
-            document.getElementById('saveBtn')?.addEventListener('click', () => {
-                alert(`⭐ Saved "${job.title}" to your favorites!`);
+            document.getElementById('saveModalBtn')?.addEventListener('click', () => {
+                if (!currentUser) {
+                    alert('⚠️ Please log in to save jobs.');
+                    closeJobModal();
+                    openLoginModal();
+                    return;
+                }
+                toggleSaved(job.id);
+                closeJobModal();
+                // Reopen with updated state? simpler: just close and reopen? We'll just close.
+                // But we want to reflect the change immediately.
+                // We'll re-render the grids after close.
+                // But we can just close and let the user reopen.
+                // Actually, we'll re-render after closing.
+                setTimeout(() => {
+                    if (!showingSaved) {
+                        const total = filteredJobs.length;
+                        renderJobs(filteredJobs, jobsGrid, currentPage, total);
+                    } else {
+                        renderSavedJobs();
+                    }
+                }, 100);
             });
         }
 
-        function closeModal() {
+        function closeJobModal() {
             modalOverlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
+        // ─── Auth functions ───
+
+        function openLoginModal() {
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loginAlert.className = 'alert';
+            loginAlert.textContent = '';
+            loginForm.reset();
+        }
+
+        function closeLoginModal() {
+            loginModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openRegisterModal() {
+            registerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            registerAlert.className = 'alert';
+            registerAlert.textContent = '';
+            registerForm.reset();
+            document.getElementById('passwordStrength').className = 'password-strength';
+        }
+
+        function closeRegisterModal() {
+            registerModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function openPostJobModal() {
+            if (!currentUser) {
+                alert('⚠️ Please log in to post a job.');
+                return;
+            }
+            postJobModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            postJobAlert.className = 'alert';
+            postJobAlert.textContent = '';
+            postJobForm.reset();
+        }
+
+        function closePostJobModal() {
+            postJobModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ─── Auth logic ───
+
+        function getUsers() {
+            const users = localStorage.getItem('ethiojobs_users');
+            return users ? JSON.parse(users) : [];
+        }
+
+        function saveUsers(users) {
+            localStorage.setItem('ethiojobs_users', JSON.stringify(users));
+        }
+
+        function getCurrentUser() {
+            const user = localStorage.getItem('ethiojobs_current_user');
+            return user ? JSON.parse(user) : null;
+        }
+
+        function setCurrentUser(user) {
+            if (user) {
+                localStorage.setItem('ethiojobs_current_user', JSON.stringify(user));
+                currentUser = user;
+            } else {
+                localStorage.removeItem('ethiojobs_current_user');
+                currentUser = null;
+            }
+            updateUI();
+        }
+
+        function updateUI() {
+            if (currentUser) {
+                authButtons.style.display = 'none';
+                userPanel.style.display = 'flex';
+                userGreeting.textContent = `👋 ${currentUser.name}`;
+            } else {
+                authButtons.style.display = 'flex';
+                userPanel.style.display = 'none';
+            }
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value.trim();
+            const email = document.getElementById('registerEmail').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('registerConfirm').value;
+
+            registerAlert.className = 'alert';
+            registerAlert.textContent = '';
+
+            if (!name || !email || !password || !confirm) {
+                registerAlert.textContent = 'All fields are required.';
+                registerAlert.className = 'alert error';
+                return;
+            }
+            if (password.length < 6) {
+                registerAlert.textContent = 'Password must be at least 6 characters.';
+                registerAlert.className = 'alert error';
+                return;
+            }
+            if (!/^(?=.*[A-Za-z])(?=.*\d).+$/.test(password)) {
+                registerAlert.textContent = 'Password must contain at least one letter and one number.';
+                registerAlert.className = 'alert error';
+                return;
+            }
+            if (password !== confirm) {
+                registerAlert.textContent = 'Passwords do not match.';
+                registerAlert.className = 'alert error';
+                return;
+            }
+
+            const users = getUsers();
+            if (users.some(u => u.email === email)) {
+                registerAlert.textContent = 'Email already registered. Please log in.';
+                registerAlert.className = 'alert error';
+                return;
+            }
+
+            const newUser = { id: Date.now(), name, email, password };
+            users.push(newUser);
+            saveUsers(users);
+            setCurrentUser(newUser);
+            registerAlert.textContent = '✅ Account created successfully!';
+            registerAlert.className = 'alert success';
+            setTimeout(() => {
+                closeRegisterModal();
+                alert('Welcome to EthioJobs Pro!');
+            }, 800);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            loginAlert.className = 'alert';
+            loginAlert.textContent = '';
+
+            if (!email || !password) {
+                loginAlert.textContent = 'Please fill in all fields.';
+                loginAlert.className = 'alert error';
+                return;
+            }
+
+            const users = getUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+            if (!user) {
+                loginAlert.textContent = 'Invalid email or password.';
+                loginAlert.className = 'alert error';
+                return;
+            }
+
+            setCurrentUser(user);
+            loginAlert.textContent = '✅ Logged in successfully!';
+            loginAlert.className = 'alert success';
+            setTimeout(() => {
+                closeLoginModal();
+                alert('Welcome back, ' + user.name + '!');
+            }, 800);
+        }
+
+        function handleLogout() {
+            setCurrentUser(null);
+            alert('You have been logged out.');
+        }
+
+        // ─── Post Job ───
+
+        function handlePostJob(e) {
+            e.preventDefault();
+            const title = document.getElementById('postTitle').value.trim();
+            const company = document.getElementById('postCompany').value.trim();
+            const location = document.getElementById('postLocation').value.trim();
+            const category = document.getElementById('postCategory').value.trim();
+            const type = document.getElementById('postType').value;
+            const salary = document.getElementById('postSalary').value.trim();
+            const remote = document.getElementById('postRemote').value === 'true';
+            const description = document.getElementById('postDescription').value.trim();
+
+            postJobAlert.className = 'alert';
+            postJobAlert.textContent = '';
+
+            if (!title || !company || !location || !category || !salary || !description) {
+                postJobAlert.textContent = 'Please fill in all required fields.';
+                postJobAlert.className = 'alert error';
+                return;
+            }
+
+            const newJob = {
+                id: jobsData.length + 1 + Math.floor(Math.random() * 1000),
+                title,
+                company,
+                location,
+                category,
+                type,
+                salary,
+                posted: new Date().toISOString().split('T')[0],
+                description: description.replace(/\n/g, '<br>') + '<br><br><em>Posted by ' + currentUser.name + '</em>',
+                requirements: ['Requirements not specified'],
+                remote,
+                featured: false,
+            };
+            jobsData.unshift(newJob);
+            applyFilters({ page: 1 });
+            closePostJobModal();
+            postJobAlert.textContent = '✅ Job posted successfully!';
+            postJobAlert.className = 'alert success';
+            setTimeout(() => {
+                postJobAlert.className = 'alert';
+                postJobAlert.textContent = '';
+            }, 3000);
+        }
+
+        // ─── password strength ───
+
+        document.getElementById('registerPassword').addEventListener('input', function() {
+            const pwd = this.value;
+            const strengthEl = document.getElementById('passwordStrength');
+            if (pwd.length < 4) {
+                strengthEl.className = 'password-strength';
+                return;
+            }
+            let score = 0;
+            if (pwd.length >= 6) score++;
+            if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) score++;
+            if (/\d/.test(pwd)) score++;
+            if (/[^A-Za-z0-9]/.test(pwd)) score++;
+            if (score >= 3) strengthEl.className = 'password-strength strong';
+            else if (score >= 2) strengthEl.className = 'password-strength medium';
+            else strengthEl.className = 'password-strength weak';
+        });
+
+        // ─── Theme toggle ───
+
+        function toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+
+        // load theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        const themeIcon = themeToggle.querySelector('i');
+        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // ─── Navigation ───
+
+        function showSavedJobs() {
+            showingSaved = true;
+            mainJobsSection.style.display = 'none';
+            savedJobsSection.classList.add('visible');
+            renderSavedJobs();
+            // close mobile menu
+            navLinks.classList.remove('open');
+        }
+
+        function showMainJobs() {
+            showingSaved = false;
+            savedJobsSection.classList.remove('visible');
+            mainJobsSection.style.display = 'block';
+            applyFilters({ page: 1 });
+            navLinks.classList.remove('open');
+        }
+
+        savedLink.addEventListener('click', (e) => { e.preventDefault();
+            showSavedJobs(); });
+        footerSavedJobs.addEventListener('click', (e) => { e.preventDefault();
+            showSavedJobs(); });
+        homeLink.addEventListener('click', (e) => { e.preventDefault();
+            showMainJobs(); });
+        footerBrowseJobs.addEventListener('click', (e) => { e.preventDefault();
+            showMainJobs(); });
+
         // ─── event listeners ───
 
-        // search form submit
+        // Search
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             searchTerm = searchInput.value.trim();
             locationTerm = locationFilter.value;
+            typeTerm = typeFilter.value;
             currentSort = sortSelect.value;
-            applyFilters();
+            showingSaved = false;
+            savedJobsSection.classList.remove('visible');
+            mainJobsSection.style.display = 'block';
+            applyFilters({ page: 1 });
         });
 
-        // sort change
+        // Filters
+        typeFilter.addEventListener('change', () => {
+            typeTerm = typeFilter.value;
+            applyFilters({ page: 1 });
+        });
         sortSelect.addEventListener('change', () => {
             currentSort = sortSelect.value;
-            applyFilters();
+            applyFilters({ page: 1 });
         });
-
-        // reset
         resetBtn.addEventListener('click', () => {
             searchInput.value = '';
             locationFilter.value = '';
+            typeFilter.value = '';
             sortSelect.value = 'newest';
             searchTerm = '';
             locationTerm = '';
+            typeTerm = '';
             currentSort = 'newest';
-            applyFilters();
+            showingSaved = false;
+            savedJobsSection.classList.remove('visible');
+            mainJobsSection.style.display = 'block';
+            applyFilters({ page: 1 });
         });
 
-        // modal close
-        closeModalBtn.addEventListener('click', closeModal);
+        // Job modal close
+        closeModalBtn.addEventListener('click', closeJobModal);
         modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal();
+            if (e.target === modalOverlay) closeJobModal();
         });
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') closeJobModal();
         });
 
-        // hamburger
+        // Auth modals
+        loginBtn.addEventListener('click', (e) => { e.preventDefault();
+            openLoginModal(); });
+        registerBtn.addEventListener('click', (e) => { e.preventDefault();
+            openRegisterModal(); });
+        closeLoginBtn.addEventListener('click', closeLoginModal);
+        closeRegisterBtn.addEventListener('click', closeRegisterModal);
+        loginModal.addEventListener('click', (e) => { if (e.target === loginModal) closeLoginModal(); });
+        registerModal.addEventListener('click', (e) => { if (e.target === registerModal) closeRegisterModal(); });
+        switchToRegister.addEventListener('click', (e) => { e.preventDefault();
+            closeLoginModal();
+            openRegisterModal(); });
+        switchToLogin.addEventListener('click', (e) => { e.preventDefault();
+            closeRegisterModal();
+            openLoginModal(); });
+        loginForm.addEventListener('submit', handleLogin);
+        registerForm.addEventListener('submit', handleRegister);
+        logoutBtn.addEventListener('click', (e) => { e.preventDefault();
+            handleLogout(); });
+
+        // Post Job
+        postJobBtn.addEventListener('click', (e) => { e.preventDefault();
+            openPostJobModal(); });
+        footerPostJob.addEventListener('click', (e) => { e.preventDefault();
+            openPostJobModal(); });
+        closePostJobBtn.addEventListener('click', closePostJobModal);
+        postJobModal.addEventListener('click', (e) => { if (e.target === postJobModal) closePostJobModal(); });
+        postJobForm.addEventListener('submit', handlePostJob);
+
+        // Hamburger
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('open');
         });
 
         // ─── init ───
         function init() {
+            // Load current user
+            const user = getCurrentUser();
+            if (user) {
+                currentUser = user;
+                updateUI();
+            } else {
+                updateUI();
+            }
+
             renderCategories();
-            // initial sort: newest
             filteredJobs = sortJobs([...jobsData], 'newest');
-            renderJobs(filteredJobs);
-            updateStats();
+            currentPage = 1;
+            renderJobs(filteredJobs, jobsGrid, currentPage, filteredJobs.length);
+            updateStats(filteredJobs.length);
+            resultCount.textContent = `Showing ${filteredJobs.length} jobs`;
+
+            // If there are saved jobs, ensure they are loaded
+            savedJobs = JSON.parse(localStorage.getItem('ethiojobs_saved')) || [];
         }
 
         init();
-
-        // re-run category counts after filter? We'll keep static counts based on full dataset.
-        // But we want category counts to reflect full dataset always.
-        // Already done in renderCategories.
     </script>
 </body>
 </html>
