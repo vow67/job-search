@@ -1092,16 +1092,6 @@
             background: var(--gray-400);
             border-radius: 10px;
         }
-
-        /* ─── utility ─── */
-        .hidden {
-            display: none !important;
-        }
-        .flex-center {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
     </style>
 </head>
 <body>
@@ -1109,7 +1099,7 @@
     <!-- ═══════════════ HEADER ═══════════════ -->
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo">
+            <a href="#" class="logo" id="homeLink">
                 <i class="fas fa-briefcase"></i>
                 Ethio<span>Jobs</span> <span style="font-size:0.6rem; background:var(--primary); color:#fff; padding:2px 8px; border-radius:20px; margin-left:4px;">Pro</span>
             </a>
@@ -1122,8 +1112,8 @@
                 </button>
             </div>
             <nav class="nav-links" id="navLinks">
-                <a href="#" id="homeLink">Home</a>
-                <a href="#" id="savedLink">Saved Jobs</a>
+                <a href="#" id="homeLinkNav">Home</a>
+                <a href="#" id="savedLinkNav">Saved Jobs</a>
                 <a href="#">Companies</a>
                 <a href="#">About</a>
                 <div id="authButtons">
@@ -1198,12 +1188,10 @@
             <i class="fas fa-th-large"></i> Popular Categories
         </div>
         <p class="section-sub">Explore jobs by industry</p>
-        <div class="categories-grid" id="categoriesGrid">
-            <!-- filled by JS -->
-        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
     </div>
 
-    <!-- ═══════════════ SAVED JOBS (hidden by default) ═══════════════ -->
+    <!-- ═══════════════ SAVED JOBS ═══════════════ -->
     <div class="container saved-jobs-section" id="savedJobsSection">
         <div class="section-title">
             <i class="fas fa-bookmark" style="color:var(--primary);"></i> Saved Jobs
@@ -1242,11 +1230,7 @@
             </div>
         </div>
 
-        <div class="jobs-grid" id="jobsGrid">
-            <!-- rendered by JS -->
-        </div>
-
-        <!-- Pagination -->
+        <div class="jobs-grid" id="jobsGrid"></div>
         <div class="pagination" id="paginationControls"></div>
     </section>
 
@@ -1254,9 +1238,7 @@
     <div class="modal-overlay" id="jobModal">
         <div class="modal modal-job-detail">
             <button class="close-modal" id="closeModalBtn">&times;</button>
-            <div id="modalBody">
-                <!-- filled by JS -->
-            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
@@ -1423,11 +1405,11 @@
     </footer>
 
     <script>
-        // ═══════════════════════════════════════════════════
-        //  DATA — Expanded realistic Ethiopian job listings (50+ jobs)
-        // ═══════════════════════════════════════════════════
+        // ──────────────────────────────────────────────────────────────
+        //  DATA — 50+ realistic Ethiopian job listings
+        // ──────────────────────────────────────────────────────────────
 
-        const baseJobs = [{
+        const BASE_JOBS = [{
             id: 1,
             title: 'Senior Software Engineer',
             company: 'Ethio Telecom',
@@ -1452,7 +1434,6 @@
           <li>Flexible working hours</li>
           <li>Professional development opportunities</li>
         </ul>`,
-            requirements: ['5+ years experience', 'Java, Spring Boot, React', 'Cloud (AWS/Azure)'],
             remote: false,
             featured: true,
         }, {
@@ -1473,7 +1454,6 @@
           <li>Excellent communication and leadership skills</li>
           <li>Bachelor's degree in Marketing or Business</li>
         </ul>`,
-            requirements: ['4+ years marketing', 'FMCG experience', 'Digital marketing'],
             remote: false,
             featured: false,
         }, {
@@ -1494,7 +1474,6 @@
           <li>Experience with big data technologies (Spark, Hadoop)</li>
           <li>Master's degree in Data Science, Statistics, or related field</li>
         </ul>`,
-            requirements: ['3+ years data science', 'Python, SQL, ML', 'Big data experience'],
             remote: false,
             featured: true,
         }, {
@@ -1515,7 +1494,6 @@
           <li>AutoCAD and project management skills</li>
           <li>Bachelor's degree in Civil Engineering</li>
         </ul>`,
-            requirements: ['3+ years civil engineering', 'Road construction', 'AutoCAD'],
             remote: false,
             featured: false,
         }, {
@@ -1536,7 +1514,6 @@
           <li>Experience with RESTful APIs and microservices</li>
           <li>Strong problem-solving skills</li>
         </ul>`,
-            requirements: ['4+ years full-stack', 'React, Node.js, PostgreSQL', 'APIs & microservices'],
             remote: true,
             featured: true,
         }, {
@@ -1557,7 +1534,6 @@
           <li>Proficiency in accounting software (QuickBooks, Peachtree)</li>
           <li>Bachelor's degree in Accounting or Finance</li>
         </ul>`,
-            requirements: ['2+ years accounting', 'IFRS knowledge', 'Accounting software'],
             remote: false,
             featured: false,
         }, {
@@ -1578,7 +1554,6 @@
           <li>PMP certification is a plus</li>
           <li>Master's degree in related field</li>
         </ul>`,
-            requirements: ['7+ years project management', 'NGO/development experience', 'PMP preferred'],
             remote: false,
             featured: false,
         }, {
@@ -1599,7 +1574,6 @@
           <li>Ability to work in a fast-paced environment</li>
           <li>Diploma or Bachelor's degree</li>
         </ul>`,
-            requirements: ['1+ year sales', 'Communication skills', 'Fast-paced environment'],
             remote: false,
             featured: false,
         }, {
@@ -1620,7 +1594,6 @@
           <li>Strong portfolio showcasing user-centered design</li>
           <li>Bachelor's degree in Design or related field</li>
         </ul>`,
-            requirements: ['3+ years UX/UI', 'Figma / Adobe XD', 'Strong portfolio'],
             remote: false,
             featured: false,
         }, {
@@ -1641,7 +1614,6 @@
           <li>Strong leadership and organizational skills</li>
           <li>Bachelor's degree in Business or Logistics</li>
         </ul>`,
-            requirements: ['5+ years operations', 'Supply chain management', 'Leadership skills'],
             remote: false,
             featured: false,
         }, {
@@ -1662,7 +1634,6 @@
           <li>Eagerness to learn and grow</li>
           <li>Bachelor's degree in Computer Science or related</li>
         </ul>`,
-            requirements: ['0–2 years development', 'HTML, CSS, JavaScript', 'Eagerness to learn'],
             remote: false,
             featured: false,
         }, {
@@ -1683,7 +1654,6 @@
           <li>Master's degree in Public Health or related</li>
           <li>Knowledge of Ethiopian health systems</li>
         </ul>`,
-            requirements: ['5+ years public health', 'Health program management', 'MPH degree'],
             remote: false,
             featured: false,
         }, {
@@ -1704,7 +1674,6 @@
           <li>Experience with social media management</li>
           <li>Knowledge of video editing is a plus</li>
         </ul>`,
-            requirements: ['1+ year content creation', 'Writing & editing', 'Social media'],
             remote: true,
             featured: false,
         }, {
@@ -1725,7 +1694,6 @@
           <li>Knowledge of electrical safety standards</li>
           <li>Bachelor's degree in Electrical Engineering</li>
         </ul>`,
-            requirements: ['3+ years electrical engineering', 'Power systems', 'Safety standards'],
             remote: false,
             featured: false,
         }, {
@@ -1746,7 +1714,6 @@
           <li>Experience in telecom is a plus</li>
           <li>Bachelor's degree in Business or related</li>
         </ul>`,
-            requirements: ['4+ years CS management', 'Leadership skills', 'Telecom experience a plus'],
             remote: false,
             featured: false,
         }, {
@@ -1767,7 +1734,6 @@
           <li>Strong portfolio</li>
           <li>Ability to work independently</li>
         </ul>`,
-            requirements: ['2+ years design', 'Adobe Suite', 'Strong portfolio'],
             remote: true,
             featured: false,
         }, {
@@ -1787,7 +1753,6 @@
           <li>Good communication skills</li>
           <li>Basic knowledge of HR practices</li>
         </ul>`,
-            requirements: ['Recent graduate', 'Communication skills', 'HR knowledge'],
             remote: false,
             featured: false,
         }, {
@@ -1807,7 +1772,6 @@
           <li>Strong organizational skills</li>
           <li>Knowledge of inventory management</li>
         </ul>`,
-            requirements: ['2+ years logistics', 'Organizational skills', 'Inventory management'],
             remote: false,
             featured: false,
         }, {
@@ -1827,7 +1791,6 @@
           <li>Teaching experience is a plus</li>
           <li>Commitment for at least 3 months</li>
         </ul>`,
-            requirements: ['Bachelor's degree', 'Teaching experience a plus', 'Commitment'],
             remote: false,
             featured: false,
         }, {
@@ -1847,7 +1810,6 @@
           <li>Experience with Redux and RESTful APIs</li>
           <li>Strong JavaScript skills</li>
         </ul>`,
-            requirements: ['3+ years React', 'Redux, REST', 'JavaScript'],
             remote: false,
             featured: true,
         }, {
@@ -1867,7 +1829,6 @@
           <li>Content creation skills</li>
           <li>Knowledge of analytics tools</li>
         </ul>`,
-            requirements: ['Social media experience', 'Content creation', 'Analytics'],
             remote: false,
             featured: false,
         }, {
@@ -1887,7 +1848,6 @@
           <li>Experience with Cisco equipment</li>
           <li>Knowledge of network security</li>
         </ul>`,
-            requirements: ['CCNA/CCNP', 'Cisco experience', 'Network security'],
             remote: false,
             featured: false,
         }, {
@@ -1907,7 +1867,6 @@
           <li>Portfolio of published work</li>
           <li>Ability to meet deadlines</li>
         </ul>`,
-            requirements: ['Writing skills', 'Portfolio', 'Deadline-driven'],
             remote: true,
             featured: false,
         }, {
@@ -1927,7 +1886,6 @@
           <li>Strong organizational skills</li>
           <li>Proficiency in Microsoft Office</li>
         </ul>`,
-            requirements: ['Bachelor's degree', 'Organizational skills', 'MS Office'],
             remote: false,
             featured: false,
         }, {
@@ -1947,7 +1905,6 @@
           <li>Experience in fintech or financial services</li>
           <li>Strong leadership and negotiation skills</li>
         </ul>`,
-            requirements: ['5+ years sales management', 'Fintech experience', 'Leadership'],
             remote: false,
             featured: false,
         }, {
@@ -1967,7 +1924,6 @@
           <li>Proficiency in HTML, CSS, and WordPress</li>
           <li>Experience with responsive design</li>
         </ul>`,
-            requirements: ['3+ years web design', 'HTML, CSS, WordPress', 'Responsive design'],
             remote: false,
             featured: false,
         }, {
@@ -1987,7 +1943,6 @@
           <li>CFA or similar certification preferred</li>
           <li>Strong Excel and modeling skills</li>
         </ul>`,
-            requirements: ['3+ years financial analysis', 'CFA preferred', 'Excel modeling'],
             remote: false,
             featured: false,
         }, {
@@ -2007,7 +1962,6 @@
           <li>Strong interpersonal skills</li>
           <li>Ability to work with diverse groups</li>
         </ul>`,
-            requirements: ['Community outreach', 'Interpersonal skills', 'Diversity'],
             remote: false,
             featured: false,
         }, {
@@ -2027,7 +1981,6 @@
           <li>Experience with Docker, Kubernetes, and CI/CD</li>
           <li>Cloud certifications (AWS, GCP) preferred</li>
         </ul>`,
-            requirements: ['4+ years DevOps', 'Docker, Kubernetes, CI/CD', 'Cloud certifications'],
             remote: true,
             featured: true,
         }, {
@@ -2047,7 +2000,6 @@
           <li>Knowledge of Ethiopian labor law</li>
           <li>Strong leadership and communication skills</li>
         </ul>`,
-            requirements: ['5+ years HR management', 'Labor law knowledge', 'Leadership'],
             remote: false,
             featured: false,
         }, {
@@ -2067,7 +2019,6 @@
           <li>Experience with REST APIs and state management</li>
           <li>Published apps on Play Store/App Store</li>
         </ul>`,
-            requirements: ['2+ years Flutter', 'REST APIs', 'Published apps'],
             remote: false,
             featured: false,
         }, {
@@ -2087,7 +2038,6 @@
           <li>Experience in fintech or banking</li>
           <li>Strong communication and analytical skills</li>
         </ul>`,
-            requirements: ['3+ years BA', 'Fintech experience', 'Analytical skills'],
             remote: false,
             featured: false,
         }, {
@@ -2107,7 +2057,6 @@
           <li>2+ years of teaching experience</li>
           <li>Native-level English proficiency</li>
         </ul>`,
-            requirements: ['TEFL/CELTA', '2+ years teaching', 'Native English'],
             remote: false,
             featured: false,
         }, {
@@ -2127,7 +2076,6 @@
           <li>Knowledge of Ethiopian public procurement laws</li>
           <li>Bachelor's degree in Business or related</li>
         </ul>`,
-            requirements: ['3+ years procurement', 'Public procurement laws', 'Bachelor's degree'],
             remote: false,
             featured: false,
         }, {
@@ -2147,7 +2095,6 @@
           <li>Experience in journalism or content creation</li>
           <li>Ability to meet deadlines</li>
         </ul>`,
-            requirements: ['Amharic writing', 'Journalism experience', 'Deadline-driven'],
             remote: true,
             featured: false,
         }, {
@@ -2167,7 +2114,6 @@
           <li>Knowledge of Windows, networking, and troubleshooting</li>
           <li>Good communication skills</li>
         </ul>`,
-            requirements: ['2+ years IT support', 'Windows/Networking', 'Communication'],
             remote: false,
             featured: false,
         }, {
@@ -2187,7 +2133,6 @@
           <li>Experience in data analysis and report writing</li>
           <li>Knowledge of statistical software (STATA, SPSS)</li>
         </ul>`,
-            requirements: ['Master's degree', 'Data analysis', 'STATA/SPSS'],
             remote: false,
             featured: false,
         }, {
@@ -2207,7 +2152,6 @@
           <li>Knowledge of building codes and safety</li>
           <li>Project management skills</li>
         </ul>`,
-            requirements: ['5+ years supervision', 'Building codes', 'Project management'],
             remote: false,
             featured: false,
         }, {
@@ -2227,7 +2171,6 @@
           <li>Experience in customer service</li>
           <li>Ability to handle high call volume</li>
         </ul>`,
-            requirements: ['Communication skills', 'Customer service experience', 'Call center'],
             remote: false,
             featured: false,
         }, {
@@ -2247,7 +2190,6 @@
           <li>CPA or ACCA certification</li>
           <li>Experience in manufacturing or FMCG</li>
         </ul>`,
-            requirements: ['7+ years financial management', 'CPA/ACCA', 'FMCG experience'],
             remote: false,
             featured: false,
         }, {
@@ -2267,7 +2209,6 @@
           <li>Proficiency in InDesign, Illustrator, Photoshop</li>
           <li>Knowledge of pre-press processes</li>
         </ul>`,
-            requirements: ['3+ years print design', 'Adobe Suite', 'Pre-press'],
             remote: false,
             featured: false,
         }, {
@@ -2287,7 +2228,6 @@
           <li>Experience with community development</li>
           <li>Strong organizational and reporting skills</li>
         </ul>`,
-            requirements: ['3+ years NGO coordination', 'Community development', 'Reporting'],
             remote: false,
             featured: false,
         }, {
@@ -2307,7 +2247,6 @@
           <li>Experience with Django/Flask</li>
           <li>Knowledge of databases and APIs</li>
         </ul>`,
-            requirements: ['3+ years Python', 'Django/Flask', 'APIs'],
             remote: false,
             featured: false,
         }, {
@@ -2327,7 +2266,6 @@
           <li>Knowledge of the poultry industry is a plus</li>
           <li>Willing to travel</li>
         </ul>`,
-            requirements: ['1+ year sales', 'Poultry industry a plus', 'Willing to travel'],
             remote: false,
             featured: false,
         }, {
@@ -2347,7 +2285,6 @@
           <li>Experience leading design projects</li>
           <li>Strong portfolio and design systems knowledge</li>
         </ul>`,
-            requirements: ['5+ years UI/UX', 'Leadership', 'Design systems'],
             remote: false,
             featured: false,
         }, {
@@ -2367,7 +2304,6 @@
           <li>Experience with ERP systems</li>
           <li>Strong analytical and problem-solving skills</li>
         </ul>`,
-            requirements: ['3+ years supply chain', 'ERP systems', 'Analytical skills'],
             remote: false,
             featured: false,
         }, {
@@ -2387,7 +2323,6 @@
           <li>Familiar with social media platforms</li>
           <li>Creative and eager to learn</li>
         </ul>`,
-            requirements: ['Recent graduate', 'Social media knowledge', 'Creativity'],
             remote: false,
             featured: false,
         }, {
@@ -2407,7 +2342,6 @@
           <li>CPA or ACCA preferred</li>
           <li>Experience with banking regulations</li>
         </ul>`,
-            requirements: ['5+ years accounting', 'CPA/ACCA', 'Banking regulations'],
             remote: false,
             featured: false,
         }, {
@@ -2427,7 +2361,6 @@
           <li>Experience with Redux and native modules</li>
           <li>Published apps on Play Store/App Store</li>
         </ul>`,
-            requirements: ['2+ years React Native', 'Redux', 'Published apps'],
             remote: false,
             featured: false,
         }, {
@@ -2447,13 +2380,12 @@
           <li>Good organizational skills</li>
           <li>Proficiency in MS Office</li>
         </ul>`,
-            requirements: ['1+ year logistics', 'Organizational skills', 'MS Office'],
             remote: false,
             featured: false,
         }];
 
         // ─── categories ───
-        const categories = [
+        const CATEGORIES = [
             { name: 'Technology', icon: 'fa-code' },
             { name: 'Marketing', icon: 'fa-bullhorn' },
             { name: 'Finance', icon: 'fa-chart-line' },
@@ -2493,8 +2425,8 @@
         }
 
         // ─── state ───
-        let jobsData = [...baseJobs];
-        let filteredJobs = [...jobsData];
+        let allJobs = [...BASE_JOBS];
+        let filteredJobs = [...allJobs];
         let currentSort = 'newest';
         let searchTerm = '';
         let locationTerm = '';
@@ -2502,72 +2434,68 @@
         let currentUser = null;
         let savedJobs = JSON.parse(localStorage.getItem('ethiojobs_saved')) || [];
         let currentPage = 1;
-        const perPage = 8;
+        const PER_PAGE = 8;
         let showingSaved = false;
 
         // ─── DOM refs ───
-        const jobsGrid = document.getElementById('jobsGrid');
-        const savedJobsGrid = document.getElementById('savedJobsGrid');
-        const savedJobsSection = document.getElementById('savedJobsSection');
-        const mainJobsSection = document.getElementById('mainJobsSection');
-        const resultCount = document.getElementById('resultCount');
-        const jobCountEl = document.getElementById('jobCount');
-        const searchInput = document.getElementById('searchInput');
-        const locationFilter = document.getElementById('locationFilter');
-        const typeFilter = document.getElementById('typeFilter');
-        const sortSelect = document.getElementById('sortSelect');
-        const resetBtn = document.getElementById('resetFiltersBtn');
-        const modalOverlay = document.getElementById('jobModal');
-        const modalBody = document.getElementById('modalBody');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const categoriesGrid = document.getElementById('categoriesGrid');
-        const searchForm = document.getElementById('searchForm');
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        const paginationControls = document.getElementById('paginationControls');
+        const $ = id => document.getElementById(id);
+        const jobsGrid = $('jobsGrid');
+        const savedJobsGrid = $('savedJobsGrid');
+        const savedJobsSection = $('savedJobsSection');
+        const mainJobsSection = $('mainJobsSection');
+        const resultCount = $('resultCount');
+        const jobCountEl = $('jobCount');
+        const searchInput = $('searchInput');
+        const locationFilter = $('locationFilter');
+        const typeFilter = $('typeFilter');
+        const sortSelect = $('sortSelect');
+        const resetBtn = $('resetFiltersBtn');
+        const modalOverlay = $('jobModal');
+        const modalBody = $('modalBody');
+        const closeModalBtn = $('closeModalBtn');
+        const categoriesGrid = $('categoriesGrid');
+        const searchForm = $('searchForm');
+        const hamburger = $('hamburger');
+        const navLinks = $('navLinks');
+        const paginationControls = $('paginationControls');
 
-        // Auth modals
-        const loginModal = document.getElementById('loginModal');
-        const registerModal = document.getElementById('registerModal');
-        const closeLoginBtn = document.getElementById('closeLoginModal');
-        const closeRegisterBtn = document.getElementById('closeRegisterModal');
-        const loginBtn = document.getElementById('loginBtn');
-        const registerBtn = document.getElementById('registerBtn');
-        const switchToRegister = document.getElementById('switchToRegister');
-        const switchToLogin = document.getElementById('switchToLogin');
-        const loginForm = document.getElementById('loginForm');
-        const registerForm = document.getElementById('registerForm');
-        const loginAlert = document.getElementById('loginAlert');
-        const registerAlert = document.getElementById('registerAlert');
-        const authButtons = document.getElementById('authButtons');
-        const userPanel = document.getElementById('userPanel');
-        const userGreeting = document.getElementById('userGreeting');
-        const logoutBtn = document.getElementById('logoutBtn');
-        const postJobBtn = document.getElementById('postJobBtn');
-        const postJobModal = document.getElementById('postJobModal');
-        const closePostJobBtn = document.getElementById('closePostJobModal');
-        const postJobForm = document.getElementById('postJobForm');
-        const postJobAlert = document.getElementById('postJobAlert');
-        const footerPostJob = document.getElementById('footerPostJob');
-        const savedLink = document.getElementById('savedLink');
-        const homeLink = document.getElementById('homeLink');
-        const footerSavedJobs = document.getElementById('footerSavedJobs');
-        const footerBrowseJobs = document.getElementById('footerBrowseJobs');
-        const themeToggle = document.getElementById('themeToggle');
+        // Auth
+        const loginModal = $('loginModal');
+        const registerModal = $('registerModal');
+        const closeLoginBtn = $('closeLoginModal');
+        const closeRegisterBtn = $('closeRegisterModal');
+        const loginBtn = $('loginBtn');
+        const registerBtn = $('registerBtn');
+        const switchToRegister = $('switchToRegister');
+        const switchToLogin = $('switchToLogin');
+        const loginForm = $('loginForm');
+        const registerForm = $('registerForm');
+        const loginAlert = $('loginAlert');
+        const registerAlert = $('registerAlert');
+        const authButtons = $('authButtons');
+        const userPanel = $('userPanel');
+        const userGreeting = $('userGreeting');
+        const logoutBtn = $('logoutBtn');
+        const postJobBtn = $('postJobBtn');
+        const postJobModal = $('postJobModal');
+        const closePostJobBtn = $('closePostJobModal');
+        const postJobForm = $('postJobForm');
+        const postJobAlert = $('postJobAlert');
+        const footerPostJob = $('footerPostJob');
+        const savedLinkNav = $('savedLinkNav');
+        const homeLinkNav = $('homeLinkNav');
+        const homeLink = $('homeLink');
+        const footerSavedJobs = $('footerSavedJobs');
+        const footerBrowseJobs = $('footerBrowseJobs');
+        const themeToggle = $('themeToggle');
 
-        // ─── render functions ───
-
+        // ─── render: categories ───
         function renderCategories() {
             const catMap = {};
-            jobsData.forEach(j => {
-                catMap[j.category] = (catMap[j.category] || 0) + 1;
-            });
-            const catWithCount = categories.map(c => ({
-                ...c,
-                count: catMap[c.name] || 0,
-            }));
+            allJobs.forEach(j => { catMap[j.category] = (catMap[j.category] || 0) + 1; });
+            const data = CATEGORIES.map(c => ({ ...c, count: catMap[c.name] || 0 }));
 
-            categoriesGrid.innerHTML = catWithCount.map(c => `
+            categoriesGrid.innerHTML = data.map(c => `
             <div class="category-card" data-category="${c.name}">
               <i class="fas ${c.icon}"></i>
               <h4>${c.name}</h4>
@@ -2592,6 +2520,7 @@
             });
         }
 
+        // ─── render: jobs ───
         function renderJobs(jobs, gridElement, page = 1, total = jobs.length) {
             if (!gridElement) return;
             if (!jobs || jobs.length === 0) {
@@ -2602,18 +2531,21 @@
                 <p>Try adjusting your search or filters.</p>
               </div>
             `;
+                if (gridElement === jobsGrid) {
+                    paginationControls.innerHTML = '';
+                }
                 return;
             }
 
-            const start = (page - 1) * perPage;
-            const end = Math.min(start + perPage, jobs.length);
+            const start = (page - 1) * PER_PAGE;
+            const end = Math.min(start + PER_PAGE, jobs.length);
             const pageItems = jobs.slice(start, end);
 
             gridElement.innerHTML = pageItems.map(job => {
                 const tagClass = getTypeTagClass(job.type);
                 const remoteTag = job.remote ? '<span class="tag remote">Remote</span>' : '';
                 const featuredTag = job.featured ? '<span class="tag" style="background:#ffd700;color:#000;">Featured</span>' : '';
-                const saved = savedJobs.includes(job.id) ? '❤️' : '🤍';
+                const isSaved = savedJobs.includes(job.id);
                 return `
               <div class="job-card" data-id="${job.id}">
                 <div class="job-info">
@@ -2638,7 +2570,7 @@
                       <i class="fas fa-eye"></i> View
                     </button>
                     <button class="btn btn-sm save-job-btn" data-id="${job.id}" style="background:transparent; border:1px solid var(--border-color);">
-                      <i class="fas fa-heart" style="color:${savedJobs.includes(job.id) ? '#e74c3c' : 'var(--gray-500)'};"></i>
+                      <i class="fas fa-heart" style="color:${isSaved ? '#e74c3c' : 'var(--gray-500)'};"></i>
                     </button>
                   </div>
                 </div>
@@ -2646,17 +2578,17 @@
             `;
             }).join('');
 
-            // Attach view listeners
+            // View listeners
             gridElement.querySelectorAll('.view-job-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = parseInt(btn.dataset.id);
-                    const job = jobsData.find(j => j.id === id);
+                    const job = allJobs.find(j => j.id === id);
                     if (job) openJobModal(job);
                 });
             });
 
-            // Save/unsave listeners
+            // Save listeners
             gridElement.querySelectorAll('.save-job-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2665,33 +2597,34 @@
                 });
             });
 
-            // Click on card opens detail
+            // Card click
             gridElement.querySelectorAll('.job-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     if (e.target.closest('button')) return;
                     const id = parseInt(card.dataset.id);
-                    const job = jobsData.find(j => j.id === id);
+                    const job = allJobs.find(j => j.id === id);
                     if (job) openJobModal(job);
                 });
             });
 
-            // Pagination for main grid only
+            // Pagination only for main grid
             if (gridElement === jobsGrid) {
-                renderPagination(page, Math.ceil(total / perPage));
+                const totalPages = Math.ceil(total / PER_PAGE);
+                renderPagination(page, totalPages);
             }
         }
 
-        function renderPagination(currentPage, totalPages) {
+        function renderPagination(current, totalPages) {
             if (totalPages <= 1) {
                 paginationControls.innerHTML = '';
                 return;
             }
             let html = '';
-            html += `<button ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></button>`;
+            html += `<button ${current === 1 ? 'disabled' : ''} data-page="${current - 1}"><i class="fas fa-chevron-left"></i></button>`;
             for (let i = 1; i <= totalPages; i++) {
-                html += `<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                html += `<button class="${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
             }
-            html += `<button ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></button>`;
+            html += `<button ${current === totalPages ? 'disabled' : ''} data-page="${current + 1}"><i class="fas fa-chevron-right"></i></button>`;
             paginationControls.innerHTML = html;
 
             paginationControls.querySelectorAll('button').forEach(btn => {
@@ -2704,27 +2637,25 @@
             });
         }
 
+        // ─── toggle saved ───
         function toggleSaved(jobId) {
-            const index = savedJobs.indexOf(jobId);
-            if (index > -1) {
-                savedJobs.splice(index, 1);
-            } else {
-                savedJobs.push(jobId);
-            }
+            const idx = savedJobs.indexOf(jobId);
+            if (idx > -1) savedJobs.splice(idx, 1);
+            else savedJobs.push(jobId);
             localStorage.setItem('ethiojobs_saved', JSON.stringify(savedJobs));
-            // Re-render both grids if visible
+
+            // Re-render the active view
             if (!showingSaved) {
-                const totalFiltered = filteredJobs.length;
-                renderJobs(filteredJobs, jobsGrid, currentPage, totalFiltered);
+                const total = filteredJobs.length;
+                renderJobs(filteredJobs, jobsGrid, currentPage, total);
             } else {
                 renderSavedJobs();
             }
-            // Update any open modals? Not needed.
         }
 
         function renderSavedJobs() {
-            const savedJobItems = jobsData.filter(j => savedJobs.includes(j.id));
-            if (savedJobItems.length === 0) {
+            const items = allJobs.filter(j => savedJobs.includes(j.id));
+            if (items.length === 0) {
                 savedJobsGrid.innerHTML = `
               <div class="empty-state">
                 <i class="fas fa-bookmark"></i>
@@ -2733,12 +2664,11 @@
               </div>
             `;
             } else {
-                renderJobs(savedJobItems, savedJobsGrid, 1, savedJobItems.length);
+                renderJobs(items, savedJobsGrid, 1, items.length);
             }
         }
 
-        // ─── filtering & sorting ───
-
+        // ─── filtering ───
         function applyFilters(override = {}) {
             let term = override.search !== undefined ? override.search : searchTerm;
             let loc = override.location !== undefined ? override.location : locationTerm;
@@ -2755,7 +2685,7 @@
                 typeFilter.value = '';
             }
 
-            let filtered = jobsData.filter(job => {
+            let filtered = allJobs.filter(job => {
                 const matchTitle = job.title.toLowerCase().includes(term.toLowerCase()) ||
                     job.company.toLowerCase().includes(term.toLowerCase()) ||
                     job.category.toLowerCase().includes(term.toLowerCase());
@@ -2775,8 +2705,8 @@
             mainJobsSection.style.display = 'block';
             const total = filtered.length;
             renderJobs(filtered, jobsGrid, page, total);
-            updateStats(filtered.length);
-            resultCount.textContent = `Showing ${filtered.length} job${filtered.length > 1 ? 's' : ''}`;
+            jobCountEl.textContent = total;
+            resultCount.textContent = `Showing ${total} job${total !== 1 ? 's' : ''}`;
         }
 
         function sortJobs(jobs, sortType) {
@@ -2799,15 +2729,10 @@
             }
         }
 
-        function updateStats(count) {
-            jobCountEl.textContent = count;
-        }
-
         // ─── job modal ───
-
         function openJobModal(job) {
             const remoteBadge = job.remote ? '<span class="tag remote">Remote</span>' : '';
-            const saved = savedJobs.includes(job.id);
+            const isSaved = savedJobs.includes(job.id);
             modalBody.innerHTML = `
             <button class="close-modal" id="closeModalBtnInner">&times;</button>
             <h2 class="modal-job-title">${job.title}</h2>
@@ -2830,40 +2755,36 @@
             <div class="modal-footer">
               <button class="btn btn-success" id="applyBtn"><i class="fas fa-paper-plane"></i> Apply Now</button>
               <button class="btn btn-outline-primary" id="shareBtn"><i class="fas fa-share-alt"></i> Share</button>
-              <button class="btn ${saved ? 'btn-danger' : 'btn-outline-primary'}" id="saveModalBtn">
-                <i class="fas fa-heart"></i> ${saved ? 'Unsave' : 'Save'}
+              <button class="btn ${isSaved ? 'btn-danger' : 'btn-outline-primary'}" id="saveModalBtn">
+                <i class="fas fa-heart"></i> ${isSaved ? 'Unsave' : 'Save'}
               </button>
             </div>
           `;
             modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            const closeInner = document.getElementById('closeModalBtnInner');
-            if (closeInner) closeInner.addEventListener('click', closeJobModal);
-            document.getElementById('applyBtn')?.addEventListener('click', () => {
+            $('closeModalBtnInner')?.addEventListener('click', closeJobModal);
+            $('applyBtn')?.addEventListener('click', () => {
                 if (!currentUser) {
                     alert('⚠️ Please log in to apply for this job.');
                     closeJobModal();
                     openLoginModal();
                     return;
                 }
-                alert(`✅ Application submitted for "${job.title}" at ${job.company}!\n\nWe'll contact you soon.`);
+                alert(`✅ Application submitted for "${job.title}" at ${job.company}!`);
                 closeJobModal();
             });
-            document.getElementById('shareBtn')?.addEventListener('click', () => {
+            $('shareBtn')?.addEventListener('click', () => {
                 if (navigator.share) {
-                    navigator.share({
-                        title: job.title,
-                        text: `Check out this job: ${job.title} at ${job.company}`,
-                        url: window.location.href,
-                    }).catch(() => {});
+                    navigator.share({ title: job.title, text: `Check out: ${job.title} at ${job.company}`, url: window
+                            .location.href }).catch(() => {});
                 } else {
                     navigator.clipboard.writeText(`${job.title} at ${job.company} — ${job.salary}`)
                         .then(() => alert('📋 Copied to clipboard!'))
                         .catch(() => alert('Share: ' + job.title + ' at ' + job.company));
                 }
             });
-            document.getElementById('saveModalBtn')?.addEventListener('click', () => {
+            $('saveModalBtn')?.addEventListener('click', () => {
                 if (!currentUser) {
                     alert('⚠️ Please log in to save jobs.');
                     closeJobModal();
@@ -2872,11 +2793,6 @@
                 }
                 toggleSaved(job.id);
                 closeJobModal();
-                // Reopen with updated state? simpler: just close and reopen? We'll just close.
-                // But we want to reflect the change immediately.
-                // We'll re-render the grids after close.
-                // But we can just close and let the user reopen.
-                // Actually, we'll re-render after closing.
                 setTimeout(() => {
                     if (!showingSaved) {
                         const total = filteredJobs.length;
@@ -2893,67 +2809,12 @@
             document.body.style.overflow = '';
         }
 
-        // ─── Auth functions ───
+        // ─── Auth ───
+        function getUsers() { return JSON.parse(localStorage.getItem('ethiojobs_users') || '[]'); }
 
-        function openLoginModal() {
-            loginModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            loginAlert.className = 'alert';
-            loginAlert.textContent = '';
-            loginForm.reset();
-        }
+        function saveUsers(users) { localStorage.setItem('ethiojobs_users', JSON.stringify(users)); }
 
-        function closeLoginModal() {
-            loginModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function openRegisterModal() {
-            registerModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            registerAlert.className = 'alert';
-            registerAlert.textContent = '';
-            registerForm.reset();
-            document.getElementById('passwordStrength').className = 'password-strength';
-        }
-
-        function closeRegisterModal() {
-            registerModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        function openPostJobModal() {
-            if (!currentUser) {
-                alert('⚠️ Please log in to post a job.');
-                return;
-            }
-            postJobModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            postJobAlert.className = 'alert';
-            postJobAlert.textContent = '';
-            postJobForm.reset();
-        }
-
-        function closePostJobModal() {
-            postJobModal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // ─── Auth logic ───
-
-        function getUsers() {
-            const users = localStorage.getItem('ethiojobs_users');
-            return users ? JSON.parse(users) : [];
-        }
-
-        function saveUsers(users) {
-            localStorage.setItem('ethiojobs_users', JSON.stringify(users));
-        }
-
-        function getCurrentUser() {
-            const user = localStorage.getItem('ethiojobs_current_user');
-            return user ? JSON.parse(user) : null;
-        }
+        function getCurrentUser() { return JSON.parse(localStorage.getItem('ethiojobs_current_user') || 'null'); }
 
         function setCurrentUser(user) {
             if (user) {
@@ -2977,12 +2838,48 @@
             }
         }
 
+        function openLoginModal() {
+            loginModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            loginAlert.className = 'alert';
+            loginAlert.textContent = '';
+            loginForm.reset();
+        }
+
+        function closeLoginModal() { loginModal.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        function openRegisterModal() {
+            registerModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            registerAlert.className = 'alert';
+            registerAlert.textContent = '';
+            registerForm.reset();
+            $('passwordStrength').className = 'password-strength';
+        }
+
+        function closeRegisterModal() { registerModal.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        function openPostJobModal() {
+            if (!currentUser) { alert('⚠️ Please log in to post a job.'); return; }
+            postJobModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            postJobAlert.className = 'alert';
+            postJobAlert.textContent = '';
+            postJobForm.reset();
+        }
+
+        function closePostJobModal() { postJobModal.classList.remove('active');
+            document.body.style.overflow = ''; }
+
+        // ─── Auth handlers ───
         function handleRegister(e) {
             e.preventDefault();
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirm = document.getElementById('registerConfirm').value;
+            const name = $('registerName').value.trim();
+            const email = $('registerEmail').value.trim();
+            const password = $('registerPassword').value;
+            const confirm = $('registerConfirm').value;
 
             registerAlert.className = 'alert';
             registerAlert.textContent = '';
@@ -3021,16 +2918,14 @@
             setCurrentUser(newUser);
             registerAlert.textContent = '✅ Account created successfully!';
             registerAlert.className = 'alert success';
-            setTimeout(() => {
-                closeRegisterModal();
-                alert('Welcome to EthioJobs Pro!');
-            }, 800);
+            setTimeout(() => { closeRegisterModal();
+                alert('Welcome to EthioJobs Pro!'); }, 800);
         }
 
         function handleLogin(e) {
             e.preventDefault();
-            const email = document.getElementById('loginEmail').value.trim();
-            const password = document.getElementById('loginPassword').value;
+            const email = $('loginEmail').value.trim();
+            const password = $('loginPassword').value;
 
             loginAlert.className = 'alert';
             loginAlert.textContent = '';
@@ -3052,29 +2947,24 @@
             setCurrentUser(user);
             loginAlert.textContent = '✅ Logged in successfully!';
             loginAlert.className = 'alert success';
-            setTimeout(() => {
-                closeLoginModal();
-                alert('Welcome back, ' + user.name + '!');
-            }, 800);
+            setTimeout(() => { closeLoginModal();
+                alert('Welcome back, ' + user.name + '!'); }, 800);
         }
 
-        function handleLogout() {
-            setCurrentUser(null);
-            alert('You have been logged out.');
-        }
+        function handleLogout() { setCurrentUser(null);
+            alert('You have been logged out.'); }
 
         // ─── Post Job ───
-
         function handlePostJob(e) {
             e.preventDefault();
-            const title = document.getElementById('postTitle').value.trim();
-            const company = document.getElementById('postCompany').value.trim();
-            const location = document.getElementById('postLocation').value.trim();
-            const category = document.getElementById('postCategory').value.trim();
-            const type = document.getElementById('postType').value;
-            const salary = document.getElementById('postSalary').value.trim();
-            const remote = document.getElementById('postRemote').value === 'true';
-            const description = document.getElementById('postDescription').value.trim();
+            const title = $('postTitle').value.trim();
+            const company = $('postCompany').value.trim();
+            const location = $('postLocation').value.trim();
+            const category = $('postCategory').value.trim();
+            const type = $('postType').value;
+            const salary = $('postSalary').value.trim();
+            const remote = $('postRemote').value === 'true';
+            const description = $('postDescription').value.trim();
 
             postJobAlert.className = 'alert';
             postJobAlert.textContent = '';
@@ -3086,7 +2976,7 @@
             }
 
             const newJob = {
-                id: jobsData.length + 1 + Math.floor(Math.random() * 1000),
+                id: allJobs.length + 1 + Math.floor(Math.random() * 1000),
                 title,
                 company,
                 location,
@@ -3095,70 +2985,58 @@
                 salary,
                 posted: new Date().toISOString().split('T')[0],
                 description: description.replace(/\n/g, '<br>') + '<br><br><em>Posted by ' + currentUser.name + '</em>',
-                requirements: ['Requirements not specified'],
                 remote,
                 featured: false,
             };
-            jobsData.unshift(newJob);
+            allJobs.unshift(newJob);
             applyFilters({ page: 1 });
             closePostJobModal();
             postJobAlert.textContent = '✅ Job posted successfully!';
             postJobAlert.className = 'alert success';
-            setTimeout(() => {
-                postJobAlert.className = 'alert';
-                postJobAlert.textContent = '';
-            }, 3000);
+            setTimeout(() => { postJobAlert.className = 'alert';
+                postJobAlert.textContent = ''; }, 3000);
         }
 
-        // ─── password strength ───
-
-        document.getElementById('registerPassword').addEventListener('input', function() {
+        // ─── Password strength ───
+        $('registerPassword')?.addEventListener('input', function() {
             const pwd = this.value;
-            const strengthEl = document.getElementById('passwordStrength');
-            if (pwd.length < 4) {
-                strengthEl.className = 'password-strength';
-                return;
-            }
+            const el = $('passwordStrength');
+            if (pwd.length < 4) { el.className = 'password-strength'; return; }
             let score = 0;
             if (pwd.length >= 6) score++;
             if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) score++;
             if (/\d/.test(pwd)) score++;
             if (/[^A-Za-z0-9]/.test(pwd)) score++;
-            if (score >= 3) strengthEl.className = 'password-strength strong';
-            else if (score >= 2) strengthEl.className = 'password-strength medium';
-            else strengthEl.className = 'password-strength weak';
+            if (score >= 3) el.className = 'password-strength strong';
+            else if (score >= 2) el.className = 'password-strength medium';
+            else el.className = 'password-strength weak';
         });
 
-        // ─── Theme toggle ───
-
+        // ─── Theme ───
         function toggleTheme() {
             const current = document.documentElement.getAttribute('data-theme');
-            const newTheme = current === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
             const icon = themeToggle.querySelector('i');
-            icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
 
-        // load theme
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
-        const themeIcon = themeToggle.querySelector('i');
-        themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         themeToggle.addEventListener('click', toggleTheme);
 
         // ─── Navigation ───
-
-        function showSavedJobs() {
+        function showSaved() {
             showingSaved = true;
             mainJobsSection.style.display = 'none';
             savedJobsSection.classList.add('visible');
             renderSavedJobs();
-            // close mobile menu
             navLinks.classList.remove('open');
         }
 
-        function showMainJobs() {
+        function showMain() {
             showingSaved = false;
             savedJobsSection.classList.remove('visible');
             mainJobsSection.style.display = 'block';
@@ -3166,18 +3044,18 @@
             navLinks.classList.remove('open');
         }
 
-        savedLink.addEventListener('click', (e) => { e.preventDefault();
-            showSavedJobs(); });
-        footerSavedJobs.addEventListener('click', (e) => { e.preventDefault();
-            showSavedJobs(); });
-        homeLink.addEventListener('click', (e) => { e.preventDefault();
-            showMainJobs(); });
-        footerBrowseJobs.addEventListener('click', (e) => { e.preventDefault();
-            showMainJobs(); });
+        savedLinkNav.addEventListener('click', e => { e.preventDefault();
+            showSaved(); });
+        footerSavedJobs.addEventListener('click', e => { e.preventDefault();
+            showSaved(); });
+        homeLinkNav.addEventListener('click', e => { e.preventDefault();
+            showMain(); });
+        homeLink.addEventListener('click', e => { e.preventDefault();
+            showMain(); });
+        footerBrowseJobs.addEventListener('click', e => { e.preventDefault();
+            showMain(); });
 
-        // ─── event listeners ───
-
-        // Search
+        // ─── Event listeners ───
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             searchTerm = searchInput.value.trim();
@@ -3190,15 +3068,11 @@
             applyFilters({ page: 1 });
         });
 
-        // Filters
-        typeFilter.addEventListener('change', () => {
-            typeTerm = typeFilter.value;
-            applyFilters({ page: 1 });
-        });
-        sortSelect.addEventListener('change', () => {
-            currentSort = sortSelect.value;
-            applyFilters({ page: 1 });
-        });
+        typeFilter.addEventListener('change', () => { typeTerm = typeFilter.value;
+            applyFilters({ page: 1 }); });
+        sortSelect.addEventListener('change', () => { currentSort = sortSelect.value;
+            applyFilters({ page: 1 }); });
+
         resetBtn.addEventListener('click', () => {
             searchInput.value = '';
             locationFilter.value = '';
@@ -3214,72 +3088,56 @@
             applyFilters({ page: 1 });
         });
 
-        // Job modal close
         closeModalBtn.addEventListener('click', closeJobModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeJobModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeJobModal();
-        });
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeJobModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeJobModal(); });
 
-        // Auth modals
-        loginBtn.addEventListener('click', (e) => { e.preventDefault();
+        loginBtn.addEventListener('click', e => { e.preventDefault();
             openLoginModal(); });
-        registerBtn.addEventListener('click', (e) => { e.preventDefault();
+        registerBtn.addEventListener('click', e => { e.preventDefault();
             openRegisterModal(); });
         closeLoginBtn.addEventListener('click', closeLoginModal);
         closeRegisterBtn.addEventListener('click', closeRegisterModal);
         loginModal.addEventListener('click', (e) => { if (e.target === loginModal) closeLoginModal(); });
         registerModal.addEventListener('click', (e) => { if (e.target === registerModal) closeRegisterModal(); });
-        switchToRegister.addEventListener('click', (e) => { e.preventDefault();
+        switchToRegister.addEventListener('click', e => { e.preventDefault();
             closeLoginModal();
             openRegisterModal(); });
-        switchToLogin.addEventListener('click', (e) => { e.preventDefault();
+        switchToLogin.addEventListener('click', e => { e.preventDefault();
             closeRegisterModal();
             openLoginModal(); });
         loginForm.addEventListener('submit', handleLogin);
         registerForm.addEventListener('submit', handleRegister);
-        logoutBtn.addEventListener('click', (e) => { e.preventDefault();
+        logoutBtn.addEventListener('click', e => { e.preventDefault();
             handleLogout(); });
 
-        // Post Job
-        postJobBtn.addEventListener('click', (e) => { e.preventDefault();
+        postJobBtn.addEventListener('click', e => { e.preventDefault();
             openPostJobModal(); });
-        footerPostJob.addEventListener('click', (e) => { e.preventDefault();
+        footerPostJob.addEventListener('click', e => { e.preventDefault();
             openPostJobModal(); });
         closePostJobBtn.addEventListener('click', closePostJobModal);
         postJobModal.addEventListener('click', (e) => { if (e.target === postJobModal) closePostJobModal(); });
         postJobForm.addEventListener('submit', handlePostJob);
 
-        // Hamburger
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
+        hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); });
 
-        // ─── init ───
+        // ─── Init ───
         function init() {
-            // Load current user
             const user = getCurrentUser();
-            if (user) {
-                currentUser = user;
-                updateUI();
-            } else {
-                updateUI();
-            }
+            if (user) { currentUser = user;
+                updateUI(); } else { updateUI(); }
 
             renderCategories();
-            filteredJobs = sortJobs([...jobsData], 'newest');
+            filteredJobs = sortJobs([...allJobs], 'newest');
             currentPage = 1;
             renderJobs(filteredJobs, jobsGrid, currentPage, filteredJobs.length);
-            updateStats(filteredJobs.length);
+            jobCountEl.textContent = filteredJobs.length;
             resultCount.textContent = `Showing ${filteredJobs.length} jobs`;
-
-            // If there are saved jobs, ensure they are loaded
             savedJobs = JSON.parse(localStorage.getItem('ethiojobs_saved')) || [];
         }
 
         init();
+        console.log('✅ EthioJobs Pro loaded successfully!');
     </script>
 </body>
 </html>
