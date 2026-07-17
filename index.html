@@ -3,65 +3,76 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
-    <title>EthioJobs Pro - Ethiopia's Job Portal</title>
+    <title>EthioJobs Pro – Professional Job Portal</title>
+    <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
     <style>
-        /* ────────────── RESET & CSS VARIABLES ────────────── */
+        /* ────────────── CSS VARIABLES (Light & Dark) ────────────── */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --secondary: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray-50: #f9fafb;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --radius: 12px;
+            --radius-sm: 8px;
+            --radius-full: 9999px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg-body: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-color: #0f172a;
+            --border-color: #e2e8f0;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --input-bg: #f1f5f9;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --text-color: #e2e8f0;
+            --border-color: #334155;
+            --gray-100: #1e293b;
+            --gray-200: #334155;
+            --gray-300: #475569;
+            --gray-400: #64748b;
+            --gray-500: #94a3b8;
+            --gray-600: #cbd5e1;
+            --gray-700: #e2e8f0;
+            --gray-800: #f1f5f9;
+            --gray-900: #f8fafc;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+            --header-bg: rgba(30, 41, 59, 0.9);
+            --input-bg: #334155;
+            --primary-light: #1e3a5f;
+        }
+
+        /* ────────────── RESET & BASE ────────────── */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #0a58ca;
-            --primary-dark: #084298;
-            --primary-light: #e8f0fe;
-            --secondary: #6c757d;
-            --success: #198754;
-            --warning: #ffc107;
-            --danger: #dc3545;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --gray-100: #f1f3f5;
-            --gray-200: #e9ecef;
-            --gray-300: #dee2e6;
-            --gray-400: #ced4da;
-            --gray-500: #adb5bd;
-            --gray-600: #6c757d;
-            --gray-700: #495057;
-            --gray-800: #343a40;
-            --gray-900: #212529;
-            --shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
-            --radius: 12px;
-            --radius-sm: 8px;
-            --transition: all 0.3s ease;
-            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --bg-body: #f1f3f5;
-            --bg-card: #ffffff;
-            --text-color: #212529;
-            --border-color: #dee2e6;
-        }
-
-        [data-theme="dark"] {
-            --bg-body: #121212;
-            --bg-card: #1e1e1e;
-            --text-color: #e0e0e0;
-            --border-color: #333333;
-            --gray-100: #2a2a2a;
-            --gray-200: #333;
-            --gray-300: #444;
-            --gray-400: #555;
-            --gray-500: #777;
-            --gray-600: #999;
-            --gray-700: #bbb;
-            --gray-800: #ddd;
-            --gray-900: #eee;
-            --shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.7);
-            --primary-light: #1a3a6a;
         }
 
         body {
@@ -71,6 +82,7 @@
             line-height: 1.6;
             min-height: 100vh;
             transition: background 0.3s, color 0.3s;
+            -webkit-font-smoothing: antialiased;
         }
 
         a {
@@ -80,26 +92,58 @@
         ul {
             list-style: none;
         }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
+        }
+
+        /* ────────────── SCROLLBAR ────────────── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-400);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-500);
         }
 
         /* ────────────── BUTTONS ────────────── */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            padding: 10px 22px;
+            padding: 10px 24px;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
             transition: var(--transition);
             font-family: var(--font);
+            background: var(--gray-200);
+            color: var(--text-color);
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        .btn:active {
+            transform: scale(0.97);
         }
 
         .btn-primary {
@@ -108,8 +152,7 @@
         }
         .btn-primary:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(10, 88, 202, 0.35);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
         }
 
         .btn-outline-primary {
@@ -127,9 +170,8 @@
             color: #fff;
         }
         .btn-success:hover {
-            background: #146c43;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(25, 135, 84, 0.35);
+            background: #16a34a;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
         }
 
         .btn-danger {
@@ -137,38 +179,209 @@
             color: #fff;
         }
         .btn-danger:hover {
-            background: #b02a37;
+            background: #dc2626;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
         }
 
         .btn-sm {
             padding: 6px 14px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
         .btn-lg {
-            padding: 14px 32px;
-            font-size: 1.1rem;
+            padding: 14px 36px;
+            font-size: 1rem;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ────────────── AUTH PAGE (full screen overlay) ────────────── */
+        .auth-page {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .auth-page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.96);
+        }
+        .auth-page .auth-container {
+            width: 100%;
+            max-width: 440px;
+        }
+        .auth-page .auth-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-color);
+        }
+        .auth-page .auth-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .auth-page .auth-header i {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .auth-page .auth-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-color);
+        }
+        .auth-page .auth-header p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+        .auth-page .auth-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--gray-100);
+            border-radius: var(--radius-sm);
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+        .auth-page .auth-tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--gray-500);
+            font-family: var(--font);
+        }
+        .auth-page .auth-tab.active {
+            background: var(--bg-card);
+            color: var(--text-color);
+            box-shadow: var(--shadow-sm);
+        }
+        .auth-page .auth-tab:hover:not(.active) {
+            color: var(--text-color);
+        }
+        .auth-page .auth-form {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .auth-page .auth-form.active {
+            display: flex;
+        }
+        .auth-page .auth-form .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .auth-page .auth-form .form-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+        .auth-page .auth-form .form-group input {
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            font-family: var(--font);
+            background: var(--input-bg);
+            color: var(--text-color);
+            width: 100%;
+        }
+        .auth-page .auth-form .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: var(--bg-card);
+        }
+        .auth-page .auth-form .password-hint {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-top: 2px;
+        }
+        .auth-page .auth-form .password-strength {
+            height: 4px;
+            margin-top: 6px;
+            border-radius: 4px;
+            background: var(--gray-300);
+            transition: var(--transition);
+        }
+        .auth-page .auth-form .password-strength.weak {
+            background: var(--danger);
+            width: 33%;
+        }
+        .auth-page .auth-form .password-strength.medium {
+            background: var(--warning);
+            width: 66%;
+        }
+        .auth-page .auth-form .password-strength.strong {
+            background: var(--success);
+            width: 100%;
+        }
+        .auth-page .auth-form .btn {
+            padding: 14px;
+            font-size: 1rem;
+            margin-top: 4px;
+        }
+        .auth-page .auth-form .auth-alert {
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            display: none;
+        }
+        .auth-page .auth-form .auth-alert.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            display: block;
+        }
+        .auth-page .auth-form .auth-alert.success {
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            display: block;
+        }
+        [data-theme="dark"] .auth-page .auth-form .auth-alert.error {
+            background: #3b1a1a;
+            color: #fecaca;
+            border-color: #7f1d1d;
+        }
+        [data-theme="dark"] .auth-page .auth-form .auth-alert.success {
+            background: #1a3b2a;
+            color: #bbf7d0;
+            border-color: #166534;
         }
 
         /* ────────────── HEADER ────────────── */
         header {
-            background: var(--bg-card);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.92);
-            transition: background 0.3s;
-        }
-        [data-theme="dark"] header {
-            background: rgba(30, 30, 30, 0.92);
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 14px 0;
+            padding: 12px 0;
             flex-wrap: wrap;
         }
 
@@ -176,15 +389,26 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
         }
         .logo i {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
         }
         .logo span {
             color: var(--text-color);
+        }
+        .logo .badge-pro {
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.55rem;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-left: 4px;
+            vertical-align: middle;
         }
 
         .nav-links {
@@ -192,10 +416,25 @@
             align-items: center;
             gap: 28px;
             font-weight: 500;
-            color: var(--gray-700);
+            color: var(--gray-600);
         }
         .nav-links a {
             transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
         .nav-links a:hover {
             color: var(--primary);
@@ -207,46 +446,47 @@
         .user-greeting {
             font-weight: 600;
             color: var(--primary);
-            margin-right: 8px;
+            margin-right: 4px;
         }
 
         .hamburger {
             display: none;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             cursor: pointer;
             color: var(--text-color);
             background: none;
             border: none;
+            padding: 4px 8px;
         }
 
         /* ────────────── HERO ────────────── */
         .hero {
-            background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
-            padding: 60px 0 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 64px 0 72px;
             color: #fff;
-            border-radius: 0 0 40px 40px;
-            margin-bottom: 40px;
+            border-radius: 0 0 48px 48px;
+            margin-bottom: 48px;
             position: relative;
             overflow: hidden;
-        }
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: -60%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 50%;
-            pointer-events: none;
         }
         .hero::before {
             content: '';
             position: absolute;
-            bottom: -40%;
-            left: -10%;
+            top: -40%;
+            right: -10%;
             width: 500px;
             height: 500px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: 50%;
             pointer-events: none;
@@ -256,65 +496,69 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
+            max-width: 720px;
             margin: 0 auto;
         }
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            line-height: 1.2;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-        .hero h1 i {
-            color: #ffd700;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 28px;
-            font-weight: 300;
-        }
-        .hero .badge-ethio {
+        .hero-badge {
             display: inline-block;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(4px);
-            padding: 6px 18px;
-            border-radius: 40px;
-            font-size: 0.85rem;
+            padding: 6px 20px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
             font-weight: 500;
             margin-bottom: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            letter-spacing: 0.3px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 i {
+            color: #fcd34d;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            font-weight: 300;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* ── search bar ── */
+        /* Search Box */
         .search-box {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
             background: #fff;
-            border-radius: 60px;
-            padding: 8px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-            max-width: 750px;
+            border-radius: var(--radius-full);
+            padding: 6px;
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+            max-width: 720px;
             margin: 0 auto;
         }
         .search-box .input-group {
-            flex: 1 1 200px;
+            flex: 1 1 180px;
             display: flex;
             align-items: center;
             gap: 10px;
             background: var(--gray-100);
-            border-radius: 40px;
+            border-radius: var(--radius-full);
             padding: 0 18px;
             transition: var(--transition);
         }
         .search-box .input-group:focus-within {
             background: #fff;
-            box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.2);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
         }
         .search-box .input-group i {
-            color: var(--gray-500);
+            color: var(--gray-400);
             font-size: 1rem;
         }
         .search-box input,
@@ -329,44 +573,44 @@
             color: var(--text-color);
         }
         .search-box input::placeholder {
-            color: var(--gray-500);
+            color: var(--gray-400);
         }
         .search-box select {
             cursor: pointer;
             appearance: none;
         }
         .search-box .btn {
-            border-radius: 40px;
-            padding: 14px 34px;
+            border-radius: var(--radius-full);
+            padding: 14px 36px;
             flex-shrink: 0;
         }
 
-        /* ────────────── STATS ────────────── */
+        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
             gap: 48px;
-            margin-top: 32px;
+            margin-top: 36px;
             flex-wrap: wrap;
         }
         .stats .stat-item {
             text-align: center;
         }
         .stats .stat-item .number {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 800;
-            color: #ffd700;
+            color: #fcd34d;
         }
         .stats .stat-item .label {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.8;
         }
 
-        /* ────────────── CATEGORIES ────────────── */
+        /* ────────────── SECTION HEADERS ────────────── */
         .section-title {
             font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -375,10 +619,12 @@
             color: var(--primary);
         }
         .section-sub {
-            color: var(--gray-600);
+            color: var(--gray-500);
             margin-bottom: 28px;
+            font-size: 1rem;
         }
 
+        /* ────────────── CATEGORIES ────────────── */
         .categories-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -387,17 +633,17 @@
         }
         .category-card {
             background: var(--bg-card);
-            padding: 20px 16px;
+            padding: 20px 12px;
             border-radius: var(--radius);
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid var(--border-color);
         }
         .category-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-md);
             border-color: var(--primary);
         }
         .category-card i {
@@ -406,12 +652,13 @@
             margin-bottom: 8px;
         }
         .category-card h4 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
+            margin-bottom: 2px;
         }
         .category-card span {
-            font-size: 0.8rem;
-            color: var(--gray-600);
+            font-size: 0.75rem;
+            color: var(--gray-500);
         }
 
         /* ────────────── JOB LISTINGS ────────────── */
@@ -428,11 +675,12 @@
             margin-bottom: 24px;
         }
         .jobs-header .left h2 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
         }
         .jobs-header .left p {
-            color: var(--gray-600);
+            color: var(--gray-500);
+            font-size: 0.95rem;
         }
         .jobs-header .right {
             display: flex;
@@ -449,40 +697,51 @@
             font-size: 0.9rem;
             cursor: pointer;
             color: var(--text-color);
+            transition: var(--transition);
+        }
+        .jobs-header .right select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .jobs-grid {
             display: grid;
-            grid-template-columns: 1fr;
             gap: 18px;
         }
 
-        /* ── job card ── */
+        /* Job Card */
         .job-card {
             background: var(--bg-card);
             border-radius: var(--radius);
             padding: 24px 28px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-sm);
             transition: var(--transition);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
-            border-left: 5px solid var(--primary);
+            border: 1px solid var(--border-color);
             cursor: pointer;
+            position: relative;
         }
         .job-card:hover {
             transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
         }
         .job-card .job-info {
-            flex: 2 1 300px;
+            flex: 2 1 280px;
         }
         .job-card .job-info h3 {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
         .job-card .job-info .company {
             color: var(--primary);
@@ -490,17 +749,18 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            font-size: 0.95rem;
         }
         .job-card .job-info .company i {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
         .job-card .job-info .meta {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: var(--gray-600);
+            margin-top: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-500);
         }
         .job-card .job-info .meta span {
             display: flex;
@@ -519,109 +779,142 @@
             margin-top: 10px;
         }
         .job-card .job-tags .tag {
-            background: var(--primary-light);
-            color: var(--primary);
             padding: 2px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
             font-weight: 600;
+            background: var(--gray-100);
+            color: var(--gray-700);
+            border: 1px solid var(--border-color);
         }
         .job-card .job-tags .tag.remote {
-            background: #d1e7dd;
-            color: #0f5132;
+            background: #dcfce7;
+            color: #166534;
+            border-color: #86efac;
         }
         .job-card .job-tags .tag.fulltime {
-            background: #cfe2ff;
-            color: #084298;
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #93c5fd;
         }
         .job-card .job-tags .tag.parttime {
-            background: #fff3cd;
-            color: #664d03;
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #fcd34d;
         }
         .job-card .job-tags .tag.contract {
-            background: #f8d7da;
-            color: #842029;
-        }
-        .job-card .job-tags .tag.internship {
-            background: #d1e7dd;
-            color: #0f5132;
-        }
-        .job-card .job-tags .tag.freelance {
-            background: #e2d9f3;
-            color: #4b2b7a;
-        }
-        .job-card .job-tags .tag.temporary {
             background: #fce4ec;
             color: #b71c1c;
+            border-color: #ef9a9a;
+        }
+        .job-card .job-tags .tag.internship {
+            background: #e0f2fe;
+            color: #0369a1;
+            border-color: #7dd3fc;
+        }
+        .job-card .job-tags .tag.freelance {
+            background: #f3e8ff;
+            color: #6b21a8;
+            border-color: #d8b4fe;
+        }
+        .job-card .job-tags .tag.temporary {
+            background: #ffe4e6;
+            color: #9f1239;
+            border-color: #fda4af;
         }
         .job-card .job-tags .tag.volunteer {
-            background: #fff8e1;
-            color: #e65100;
+            background: #fff7ed;
+            color: #9a3412;
+            border-color: #fdba74;
+        }
+        .job-card .job-tags .tag.featured {
+            background: #fcd34d;
+            color: #000;
+            border-color: #f59e0b;
         }
         [data-theme="dark"] .job-card .job-tags .tag {
-            background: #2a2a2a;
-            color: #90caf9;
+            background: var(--gray-200);
+            color: var(--text-color);
+            border-color: var(--gray-300);
         }
         [data-theme="dark"] .job-card .job-tags .tag.remote {
-            background: #1a3a2a;
-            color: #81c784;
+            background: #14532d;
+            color: #86efac;
+            border-color: #22c55e;
         }
         [data-theme="dark"] .job-card .job-tags .tag.fulltime {
-            background: #1a2a4a;
-            color: #90caf9;
+            background: #1e3a5f;
+            color: #93c5fd;
+            border-color: #3b82f6;
         }
         [data-theme="dark"] .job-card .job-tags .tag.parttime {
-            background: #3a3a1a;
-            color: #ffd54f;
+            background: #78350f;
+            color: #fcd34d;
+            border-color: #f59e0b;
         }
         [data-theme="dark"] .job-card .job-tags .tag.contract {
-            background: #3a1a1a;
+            background: #4a1a1a;
             color: #ef9a9a;
+            border-color: #ef4444;
         }
         [data-theme="dark"] .job-card .job-tags .tag.internship {
-            background: #1a3a2a;
-            color: #81c784;
+            background: #0c4a6e;
+            color: #7dd3fc;
+            border-color: #0ea5e9;
         }
         [data-theme="dark"] .job-card .job-tags .tag.freelance {
-            background: #2a1a3a;
-            color: #b39ddb;
+            background: #3b1a5e;
+            color: #d8b4fe;
+            border-color: #a855f7;
         }
         [data-theme="dark"] .job-card .job-tags .tag.temporary {
-            background: #3a1a2a;
-            color: #ef9a9a;
+            background: #4a1a2a;
+            color: #fda4af;
+            border-color: #f43f5e;
         }
         [data-theme="dark"] .job-card .job-tags .tag.volunteer {
-            background: #3a2a1a;
-            color: #ffb74d;
+            background: #4a2a1a;
+            color: #fdba74;
+            border-color: #f97316;
+        }
+        [data-theme="dark"] .job-card .job-tags .tag.featured {
+            background: #f59e0b;
+            color: #000;
+            border-color: #fbbf24;
         }
 
         .job-card .job-actions {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             align-items: flex-end;
             flex: 0 0 auto;
         }
         .job-card .job-actions .salary {
             font-weight: 700;
             color: var(--success);
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
         .job-card .job-actions .posted {
-            font-size: 0.8rem;
-            color: var(--gray-500);
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+        .job-card .job-actions .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
         }
 
         /* ────────────── PAGINATION ────────────── */
         .pagination {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             margin-top: 32px;
             flex-wrap: wrap;
         }
         .pagination button {
-            padding: 8px 16px;
+            padding: 8px 14px;
             border: 1px solid var(--border-color);
             background: var(--bg-card);
             border-radius: var(--radius-sm);
@@ -629,6 +922,7 @@
             transition: var(--transition);
             font-weight: 500;
             color: var(--text-color);
+            font-size: 0.9rem;
         }
         .pagination button.active {
             background: var(--primary);
@@ -636,10 +930,10 @@
             border-color: var(--primary);
         }
         .pagination button:hover:not(.active) {
-            background: var(--gray-200);
+            background: var(--gray-100);
         }
         .pagination button:disabled {
-            opacity: 0.5;
+            opacity: 0.4;
             cursor: not-allowed;
         }
 
@@ -649,19 +943,19 @@
             padding: 60px 20px;
             background: var(--bg-card);
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border: 1px dashed var(--border-color);
         }
         .empty-state i {
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: var(--gray-400);
             margin-bottom: 16px;
         }
         .empty-state h3 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
+            font-size: 1.3rem;
+            margin-bottom: 6px;
         }
         .empty-state p {
-            color: var(--gray-600);
+            color: var(--gray-500);
         }
 
         /* ────────────── MODALS ────────────── */
@@ -669,7 +963,8 @@
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 9999;
             display: none;
             align-items: center;
@@ -681,10 +976,29 @@
             display: flex;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
         .modal {
             background: var(--bg-card);
             border-radius: var(--radius);
-            max-width: 520px;
+            max-width: 540px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -697,12 +1011,14 @@
             position: absolute;
             top: 16px;
             right: 20px;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--gray-500);
+            color: var(--gray-400);
             transition: var(--transition);
+            padding: 4px 8px;
+            line-height: 1;
         }
         .modal .close-modal:hover {
             color: var(--danger);
@@ -710,13 +1026,14 @@
         }
 
         .modal h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         .modal .subtitle {
-            color: var(--gray-600);
+            color: var(--gray-500);
             margin-bottom: 24px;
+            font-size: 0.95rem;
         }
 
         .modal .form-group {
@@ -726,7 +1043,8 @@
             display: block;
             font-weight: 600;
             margin-bottom: 4px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--gray-700);
         }
         .modal .form-group input,
         .modal .form-group select,
@@ -735,10 +1053,10 @@
             padding: 12px 16px;
             border: 2px solid var(--border-color);
             border-radius: var(--radius-sm);
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: var(--transition);
             font-family: var(--font);
-            background: var(--bg-body);
+            background: var(--input-bg);
             color: var(--text-color);
         }
         .modal .form-group input:focus,
@@ -746,36 +1064,12 @@
         .modal .form-group textarea:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(10, 88, 202, 0.15);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+            background: var(--bg-card);
         }
         .modal .form-group textarea {
             resize: vertical;
             min-height: 100px;
-        }
-
-        .modal .form-group .password-hint {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-top: 4px;
-        }
-        .modal .form-group .password-strength {
-            height: 4px;
-            margin-top: 6px;
-            border-radius: 4px;
-            background: var(--gray-300);
-            transition: var(--transition);
-        }
-        .modal .form-group .password-strength.weak {
-            background: var(--danger);
-            width: 33%;
-        }
-        .modal .form-group .password-strength.medium {
-            background: var(--warning);
-            width: 66%;
-        }
-        .modal .form-group .password-strength.strong {
-            background: var(--success);
-            width: 100%;
         }
 
         .modal .form-actions {
@@ -789,8 +1083,8 @@
         .modal .form-footer {
             text-align: center;
             margin-top: 16px;
-            font-size: 0.95rem;
-            color: var(--gray-600);
+            font-size: 0.9rem;
+            color: var(--gray-500);
         }
         .modal .form-footer a {
             color: var(--primary);
@@ -809,36 +1103,36 @@
             display: none;
         }
         .modal .alert.error {
-            background: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
             display: block;
         }
         .modal .alert.success {
-            background: #d1e7dd;
-            color: #0f5132;
-            border: 1px solid #badbcc;
+            background: #f0fdf4;
+            color: #166534;
+            border: 1px solid #bbf7d0;
             display: block;
         }
         [data-theme="dark"] .modal .alert.error {
-            background: #3a1a1a;
-            color: #ef9a9a;
-            border-color: #5a2a2a;
+            background: #3b1a1a;
+            color: #fecaca;
+            border-color: #7f1d1d;
         }
         [data-theme="dark"] .modal .alert.success {
-            background: #1a3a2a;
-            color: #81c784;
-            border-color: #2a5a3a;
+            background: #1a3b2a;
+            color: #bbf7d0;
+            border-color: #166534;
         }
 
-        /* ────────────── JOB DETAIL MODAL ────────────── */
+        /* Job Detail Modal */
         .modal-job-detail .modal-job-title {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .modal-job-detail .modal-company {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--primary);
             font-weight: 600;
             margin-bottom: 8px;
@@ -846,10 +1140,10 @@
         .modal-job-detail .modal-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            font-size: 0.95rem;
-            color: var(--gray-600);
-            margin: 12px 0 18px;
+            gap: 16px;
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin: 12px 0 16px;
         }
         .modal-job-detail .modal-meta span {
             display: flex;
@@ -863,6 +1157,7 @@
             margin: 16px 0;
             line-height: 1.8;
             color: var(--text-color);
+            font-size: 0.95rem;
         }
         .modal-job-detail .modal-desc h4 {
             margin-top: 20px;
@@ -895,30 +1190,83 @@
             display: block;
         }
 
-        /* ────────────── DARK MODE TOGGLE ────────────── */
+        /* ────────────── TOAST NOTIFICATION ────────────── */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 380px;
+            width: 100%;
+        }
+        .toast {
+            background: var(--bg-card);
+            color: var(--text-color);
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-lg);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideInRight 0.4s ease;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+        }
+        .toast.success {
+            border-left-color: var(--success);
+        }
+        .toast.error {
+            border-left-color: var(--danger);
+        }
+        .toast i {
+            font-size: 1.2rem;
+        }
+        .toast.success i {
+            color: var(--success);
+        }
+        .toast.error i {
+            color: var(--danger);
+        }
+        @keyframes slideInRight {
+            from {
+                transform: translateX(80px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* ────────────── THEME TOGGLE ────────────── */
         .theme-toggle {
             background: none;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             cursor: pointer;
             color: var(--text-color);
             transition: var(--transition);
             padding: 4px 8px;
+            border-radius: var(--radius-full);
         }
         .theme-toggle:hover {
-            transform: rotate(20deg);
+            background: var(--gray-200);
         }
 
         /* ────────────── FOOTER ────────────── */
         footer {
             background: var(--dark);
             color: rgba(255, 255, 255, 0.7);
-            padding: 40px 0 24px;
+            padding: 48px 0 24px;
             margin-top: 40px;
         }
         footer .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 32px;
             margin-bottom: 32px;
         }
@@ -926,11 +1274,13 @@
             color: #fff;
             font-weight: 600;
             margin-bottom: 12px;
+            font-size: 1rem;
         }
         footer a {
             display: block;
             padding: 4px 0;
             transition: var(--transition);
+            font-size: 0.9rem;
         }
         footer a:hover {
             color: #fff;
@@ -939,36 +1289,22 @@
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 20px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         footer .footer-bottom strong {
             color: #fff;
         }
-
-        /* ────────────── ANIMATIONS ────────────── */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            font-size: 1.2rem;
+            margin-top: 8px;
         }
 
         /* ────────────── RESPONSIVE ────────────── */
         @media (max-width: 900px) {
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
             .search-box {
                 border-radius: var(--radius);
@@ -976,6 +1312,7 @@
                 background: transparent;
                 box-shadow: none;
                 padding: 0;
+                gap: 12px;
             }
             .search-box .input-group {
                 background: var(--bg-card);
@@ -988,10 +1325,10 @@
                 justify-content: center;
             }
             .stats {
-                gap: 24px;
+                gap: 28px;
             }
             .stats .stat-item .number {
-                font-size: 1.4rem;
+                font-size: 1.6rem;
             }
         }
 
@@ -1016,10 +1353,10 @@
             }
 
             .hero {
-                padding: 40px 0 50px;
+                padding: 40px 0 48px;
             }
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .hero p {
                 font-size: 1rem;
@@ -1034,15 +1371,14 @@
                 align-items: flex-start;
                 flex-direction: row;
                 flex-wrap: wrap;
-                gap: 10px;
+                gap: 8px;
                 margin-top: 8px;
             }
             .job-card .job-actions .salary {
                 font-size: 0.95rem;
             }
-
             .modal {
-                padding: 24px;
+                padding: 24px 20px;
                 max-width: 100%;
                 margin: 10px;
             }
@@ -1062,245 +1398,316 @@
             }
             .pagination button {
                 padding: 6px 12px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+            }
+            .auth-page .auth-card {
+                padding: 28px 20px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 14px;
+                padding: 0 16px;
             }
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .stats .stat-item .number {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
             .section-title {
                 font-size: 1.4rem;
             }
+            .modal {
+                padding: 20px 16px;
+            }
+            .auth-page .auth-card {
+                padding: 24px 16px;
+            }
         }
 
-        /* ── scrollbar ── */
-        .modal::-webkit-scrollbar {
-            width: 6px;
+        /* ────────────── UTILITY ────────────── */
+        .hidden {
+            display: none !important;
         }
-        .modal::-webkit-scrollbar-track {
-            background: var(--gray-100);
+        .flex {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .modal::-webkit-scrollbar-thumb {
-            background: var(--gray-400);
-            border-radius: 10px;
+        .gap-2 {
+            gap: 8px;
+        }
+        .gap-4 {
+            gap: 16px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-4 {
+            margin-top: 16px;
+        }
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+        .w-full {
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-    <!-- ═══════════════ HEADER ═══════════════ -->
-    <header>
-        <div class="container header-inner">
-            <a href="#" class="logo" id="homeLink">
-                <i class="fas fa-briefcase"></i>
-                Ethio<span>Jobs</span> <span style="font-size:0.6rem; background:var(--primary); color:#fff; padding:2px 8px; border-radius:20px; margin-left:4px;">Pro</span>
-            </a>
-            <div style="display:flex; align-items:center; gap:12px;">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <!-- ═══════════════ AUTH PAGE (full screen) ═══════════════ -->
+    <div id="authPage" class="auth-page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-briefcase"></i>
+                    <h1>EthioJobs <span style="color:var(--primary);">Pro</span></h1>
+                    <p>Your gateway to Ethiopia's best careers</p>
+                </div>
+                <div class="auth-tabs" id="authTabs">
+                    <button class="auth-tab active" data-tab="login">Sign In</button>
+                    <button class="auth-tab" data-tab="register">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="authLoginForm" class="auth-form active">
+                    <div id="authLoginAlert" class="auth-alert"></div>
+                    <div class="form-group">
+                        <label for="authLoginEmail">Email Address</label>
+                        <input type="email" id="authLoginEmail" placeholder="you@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="authLoginPassword">Password</label>
+                        <input type="password" id="authLoginPassword" placeholder="Enter your password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+                    <div class="form-footer" style="text-align:center;margin-top:12px;font-size:0.9rem;color:var(--gray-500);">
+                        Don't have an account? <a href="#" id="authSwitchToRegister">Register here</a>
+                    </div>
+                </form>
+
+                <!-- Register Form -->
+                <form id="authRegisterForm" class="auth-form">
+                    <div id="authRegisterAlert" class="auth-alert"></div>
+                    <div class="form-group">
+                        <label for="authRegisterName">Full Name</label>
+                        <input type="text" id="authRegisterName" placeholder="Abebe Kebede" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="authRegisterEmail">Email Address</label>
+                        <input type="email" id="authRegisterEmail" placeholder="you@example.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="authRegisterPassword">Password</label>
+                        <input type="password" id="authRegisterPassword" placeholder="Create a strong password" required />
+                        <div class="password-hint">Minimum 6 characters, at least one letter and one number.</div>
+                        <div class="password-strength" id="authPasswordStrength"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="authRegisterConfirm">Confirm Password</label>
+                        <input type="password" id="authRegisterConfirm" placeholder="Confirm your password" required />
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block"><i class="fas fa-user-plus"></i> Create Account</button>
+                    <div class="form-footer" style="text-align:center;margin-top:12px;font-size:0.9rem;color:var(--gray-500);">
+                        Already have an account? <a href="#" id="authSwitchToLogin">Sign In</a>
+                    </div>
+                </form>
             </div>
-            <nav class="nav-links" id="navLinks">
-                <a href="#" id="homeLinkNav">Home</a>
-                <a href="#" id="savedLinkNav">Saved Jobs</a>
-                <a href="#">Companies</a>
-                <a href="#">About</a>
-                <div id="authButtons">
-                    <a href="#" class="btn btn-outline-primary btn-sm" id="loginBtn">Sign In</a>
-                    <a href="#" class="btn btn-primary btn-sm" id="registerBtn">Register</a>
-                </div>
-                <div id="userPanel" style="display:none; align-items:center; gap:12px; flex-wrap:wrap;">
-                    <span class="user-greeting" id="userGreeting"></span>
-                    <a href="#" class="btn btn-success btn-sm" id="postJobBtn"><i class="fas fa-plus"></i> Post Job</a>
-                    <a href="#" class="btn btn-danger btn-sm" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                </div>
-            </nav>
         </div>
-    </header>
+    </div>
 
-    <!-- ═══════════════ HERO ═══════════════ -->
-    <section class="hero">
-        <div class="container hero-content">
-            <div class="badge-ethio">
-                <i class="fas fa-map-pin"></i> 🇪🇹 Ethiopia's #1 Job Platform
-            </div>
-            <h1>Find Your <i>Dream</i> Job in Ethiopia</h1>
-            <p>Discover thousands of opportunities from top employers across Addis Ababa, Dire Dawa, Bahir Dar, and beyond.</p>
+    <!-- ═══════════════ MAIN APP (hidden initially) ═══════════════ -->
+    <div id="mainApp" style="display:none;">
 
-            <form class="search-box" id="searchForm">
-                <div class="input-group">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Job title, keyword, or company" />
+        <!-- HEADER -->
+        <header>
+            <div class="container header-inner">
+                <a href="#" class="logo" id="homeLink">
+                    <i class="fas fa-briefcase"></i>
+                    Ethio<span>Jobs</span>
+                    <span class="badge-pro">PRO</span>
+                </a>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </div>
-                <div class="input-group">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <select id="locationFilter">
-                        <option value="">All Locations</option>
-                        <option value="Addis Ababa">Addis Ababa</option>
-                        <option value="Dire Dawa">Dire Dawa</option>
-                        <option value="Bahir Dar">Bahir Dar</option>
-                        <option value="Hawassa">Hawassa</option>
-                        <option value="Mekelle">Mekelle</option>
-                        <option value="Adama">Adama</option>
-                        <option value="Gondar">Gondar</option>
-                        <option value="Jimma">Jimma</option>
-                        <option value="Dessie">Dessie</option>
-                        <option value="Harar">Harar</option>
-                        <option value="Remote">Remote</option>
+                <nav class="nav-links" id="navLinks">
+                    <a href="#" class="active" id="homeLinkNav">Home</a>
+                    <a href="#" id="savedLinkNav">Saved Jobs</a>
+                    <a href="#">Companies</a>
+                    <a href="#">About</a>
+                    <div id="authButtons">
+                        <!-- We may hide these since auth is done, but we keep for logout -->
+                    </div>
+                    <div id="userPanel" style="display:none; align-items:center; gap:12px; flex-wrap:wrap;">
+                        <span class="user-greeting" id="userGreeting"></span>
+                        <a href="#" class="btn btn-success btn-sm" id="postJobBtn"><i class="fas fa-plus"></i> Post</a>
+                        <a href="#" class="btn btn-danger btn-sm" id="logoutBtn"><i class="fas fa-sign-out-alt"></i></a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-map-pin"></i> 🇪🇹 Ethiopia's Premier Job Platform
+                </div>
+                <h1>Find Your <i>Dream</i> Career in Ethiopia</h1>
+                <p>Discover thousands of opportunities from top employers across the nation.</p>
+
+                <form class="search-box" id="searchForm">
+                    <div class="input-group">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Job title, company, or keyword" />
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="Addis Ababa">Addis Ababa</option>
+                            <option value="Dire Dawa">Dire Dawa</option>
+                            <option value="Bahir Dar">Bahir Dar</option>
+                            <option value="Hawassa">Hawassa</option>
+                            <option value="Mekelle">Mekelle</option>
+                            <option value="Adama">Adama</option>
+                            <option value="Gondar">Gondar</option>
+                            <option value="Jimma">Jimma</option>
+                            <option value="Dessie">Dessie</option>
+                            <option value="Harar">Harar</option>
+                            <option value="Remote">Remote</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </form>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="number" id="jobCount">0</div>
+                        <div class="label">Jobs Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">500+</div>
+                        <div class="label">Companies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="number">12k+</div>
+                        <div class="label">Happy Candidates</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <div class="container">
+            <div class="section-title">
+                <i class="fas fa-th-large"></i> Popular Categories
+            </div>
+            <p class="section-sub">Explore opportunities by industry</p>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+
+        <!-- SAVED JOBS -->
+        <div class="container saved-jobs-section" id="savedJobsSection">
+            <div class="section-title">
+                <i class="fas fa-bookmark" style="color:var(--primary);"></i> Saved Jobs
+            </div>
+            <p class="section-sub">Your bookmarked positions</p>
+            <div class="jobs-grid" id="savedJobsGrid"></div>
+        </div>
+
+        <!-- JOB LISTINGS -->
+        <section class="container jobs-section" id="mainJobsSection">
+            <div class="jobs-header">
+                <div class="left">
+                    <h2><i class="fas fa-list-ul" style="color:var(--primary);"></i> Latest Jobs</h2>
+                    <p id="resultCount">Showing all jobs</p>
+                </div>
+                <div class="right">
+                    <select id="typeFilter">
+                        <option value="">All Types</option>
+                        <option value="Full-time">Full-time</option>
+                        <option value="Part-time">Part-time</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Temporary">Temporary</option>
+                        <option value="Volunteer">Volunteer</option>
                     </select>
-                </div>
-                <button type="submit" class="btn btn-primary btn-lg">
-                    <i class="fas fa-search"></i> Search
-                </button>
-            </form>
-
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="number" id="jobCount">0</div>
-                    <div class="label">Jobs Available</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">500+</div>
-                    <div class="label">Companies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">12k+</div>
-                    <div class="label">Happy Candidates</div>
+                    <select id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="salary-high">Salary: High to Low</option>
+                        <option value="salary-low">Salary: Low to High</option>
+                    </select>
+                    <button class="btn btn-outline-primary btn-sm" id="resetFiltersBtn">
+                        <i class="fas fa-undo"></i> Reset
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ═══════════════ CATEGORIES ═══════════════ -->
-    <div class="container">
-        <div class="section-title">
-            <i class="fas fa-th-large"></i> Popular Categories
-        </div>
-        <p class="section-sub">Explore jobs by industry</p>
-        <div class="categories-grid" id="categoriesGrid"></div>
-    </div>
+            <div class="jobs-grid" id="jobsGrid"></div>
+            <div class="pagination" id="paginationControls"></div>
+        </section>
 
-    <!-- ═══════════════ SAVED JOBS ═══════════════ -->
-    <div class="container saved-jobs-section" id="savedJobsSection">
-        <div class="section-title">
-            <i class="fas fa-bookmark" style="color:var(--primary);"></i> Saved Jobs
-        </div>
-        <p class="section-sub">Your bookmarked positions</p>
-        <div class="jobs-grid" id="savedJobsGrid"></div>
-    </div>
-
-    <!-- ═══════════════ JOB LISTINGS ═══════════════ -->
-    <section class="container jobs-section" id="mainJobsSection">
-        <div class="jobs-header">
-            <div class="left">
-                <h2><i class="fas fa-list-ul" style="color:var(--primary);"></i> Latest Jobs</h2>
-                <p id="resultCount">Showing all jobs</p>
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <h4><i class="fas fa-briefcase"></i> EthioJobs Pro</h4>
+                        <p style="margin-bottom:12px;font-size:0.9rem;">Connecting Ethiopian talent with great opportunities since 2020.</p>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-telegram"></i></a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>For Job Seekers</h4>
+                        <a href="#" id="footerBrowseJobs">Browse Jobs</a>
+                        <a href="#" id="footerSavedJobs">Saved Jobs</a>
+                        <a href="#">Career Advice</a>
+                        <a href="#">Interview Prep</a>
+                    </div>
+                    <div>
+                        <h4>For Employers</h4>
+                        <a href="#" id="footerPostJob">Post a Job</a>
+                        <a href="#">Company Profile</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">Talent Search</a>
+                    </div>
+                    <div>
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    &copy; 2026 <strong>EthioJobs Pro</strong> — Made with <i class="fas fa-heart" style="color:#ef4444;"></i> in Ethiopia
+                </div>
             </div>
-            <div class="right">
-                <select id="typeFilter">
-                    <option value="">All Types</option>
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Internship">Internship</option>
-                    <option value="Freelance">Freelance</option>
-                    <option value="Temporary">Temporary</option>
-                    <option value="Volunteer">Volunteer</option>
-                </select>
-                <select id="sortSelect">
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                    <option value="salary-high">Salary: High to Low</option>
-                    <option value="salary-low">Salary: Low to High</option>
-                </select>
-                <button class="btn btn-outline-primary btn-sm" id="resetFiltersBtn">
-                    <i class="fas fa-undo"></i> Reset
-                </button>
-            </div>
-        </div>
+        </footer>
 
-        <div class="jobs-grid" id="jobsGrid"></div>
-        <div class="pagination" id="paginationControls"></div>
-    </section>
+    </div> <!-- /mainApp -->
 
     <!-- ═══════════════ MODAL: Job Detail ═══════════════ -->
     <div class="modal-overlay" id="jobModal">
         <div class="modal modal-job-detail">
             <button class="close-modal" id="closeModalBtn">&times;</button>
             <div id="modalBody"></div>
-        </div>
-    </div>
-
-    <!-- ═══════════════ MODAL: Login ═══════════════ -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal">
-            <button class="close-modal" id="closeLoginModal">&times;</button>
-            <h2><i class="fas fa-sign-in-alt" style="color:var(--primary);"></i> Sign In</h2>
-            <p class="subtitle">Welcome back! Log in to your EthioJobs account.</p>
-            <div id="loginAlert" class="alert"></div>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="you@example.com" required />
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required />
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-sign-in-alt"></i> Sign In</button>
-                </div>
-                <div class="form-footer">
-                    Don't have an account? <a id="switchToRegister">Register here</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ═══════════════ MODAL: Register ═══════════════ -->
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal">
-            <button class="close-modal" id="closeRegisterModal">&times;</button>
-            <h2><i class="fas fa-user-plus" style="color:var(--primary);"></i> Create Account</h2>
-            <p class="subtitle">Join thousands of job seekers in Ethiopia.</p>
-            <div id="registerAlert" class="alert"></div>
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="registerName">Full Name</label>
-                    <input type="text" id="registerName" placeholder="Abebe Kebede" required />
-                </div>
-                <div class="form-group">
-                    <label for="registerEmail">Email Address</label>
-                    <input type="email" id="registerEmail" placeholder="you@example.com" required />
-                </div>
-                <div class="form-group">
-                    <label for="registerPassword">Password</label>
-                    <input type="password" id="registerPassword" placeholder="Create a strong password" required />
-                    <div class="password-hint">Minimum 6 characters, at least one letter and one number.</div>
-                    <div class="password-strength" id="passwordStrength"></div>
-                </div>
-                <div class="form-group">
-                    <label for="registerConfirm">Confirm Password</label>
-                    <input type="password" id="registerConfirm" placeholder="Confirm your password" required />
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-user-plus"></i> Register</button>
-                </div>
-                <div class="form-footer">
-                    Already have an account? <a id="switchToLogin">Sign In</a>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -1356,57 +1763,18 @@
                     <textarea id="postDescription" rows="4" placeholder="Describe the role, requirements, and benefits..." required></textarea>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-success btn-lg"><i class="fas fa-plus-circle"></i> Post Job</button>
+                    <button type="submit" class="btn btn-success btn-lg btn-block"><i class="fas fa-plus-circle"></i> Post Job</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- ═══════════════ FOOTER ═══════════════ -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <h4><i class="fas fa-briefcase"></i> EthioJobs Pro</h4>
-                    <p style="margin-bottom:12px;">Connecting Ethiopian talent with great opportunities since 2020.</p>
-                    <div style="display:flex;gap:12px;font-size:1.2rem;">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4>For Job Seekers</h4>
-                    <a href="#" id="footerBrowseJobs">Browse Jobs</a>
-                    <a href="#" id="footerSavedJobs">Saved Jobs</a>
-                    <a href="#">Career Advice</a>
-                    <a href="#">Interview Prep</a>
-                </div>
-                <div>
-                    <h4>For Employers</h4>
-                    <a href="#" id="footerPostJob">Post a Job</a>
-                    <a href="#">Company Profile</a>
-                    <a href="#">Pricing</a>
-                    <a href="#">Talent Search</a>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                &copy; 2026 <strong>EthioJobs Pro</strong> — Made with <i class="fas fa-heart" style="color:#e74c3c;"></i> in Ethiopia
-            </div>
-        </div>
-    </footer>
+    <!-- ═══════════════ TOAST CONTAINER ═══════════════ -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script>
         // ──────────────────────────────────────────────────────────────
-        //  DATA — 50+ realistic Ethiopian job listings
+        //  DATA — 50+ Realistic Ethiopian Job Listings
         // ──────────────────────────────────────────────────────────────
 
         const BASE_JOBS = [{
@@ -2439,6 +2807,23 @@
 
         // ─── DOM refs ───
         const $ = id => document.getElementById(id);
+        const authPage = $('authPage');
+        const mainApp = $('mainApp');
+        const authLoginForm = $('authLoginForm');
+        const authRegisterForm = $('authRegisterForm');
+        const authTabs = $('authTabs');
+        const authLoginAlert = $('authLoginAlert');
+        const authRegisterAlert = $('authRegisterAlert');
+        const authSwitchToRegister = $('authSwitchToRegister');
+        const authSwitchToLogin = $('authSwitchToLogin');
+        const authLoginEmail = $('authLoginEmail');
+        const authLoginPassword = $('authLoginPassword');
+        const authRegisterName = $('authRegisterName');
+        const authRegisterEmail = $('authRegisterEmail');
+        const authRegisterPassword = $('authRegisterPassword');
+        const authRegisterConfirm = $('authRegisterConfirm');
+        const authPasswordStrength = $('authPasswordStrength');
+
         const jobsGrid = $('jobsGrid');
         const savedJobsGrid = $('savedJobsGrid');
         const savedJobsSection = $('savedJobsSection');
@@ -2458,21 +2843,8 @@
         const hamburger = $('hamburger');
         const navLinks = $('navLinks');
         const paginationControls = $('paginationControls');
+        const toastContainer = $('toastContainer');
 
-        // Auth
-        const loginModal = $('loginModal');
-        const registerModal = $('registerModal');
-        const closeLoginBtn = $('closeLoginModal');
-        const closeRegisterBtn = $('closeRegisterModal');
-        const loginBtn = $('loginBtn');
-        const registerBtn = $('registerBtn');
-        const switchToRegister = $('switchToRegister');
-        const switchToLogin = $('switchToLogin');
-        const loginForm = $('loginForm');
-        const registerForm = $('registerForm');
-        const loginAlert = $('loginAlert');
-        const registerAlert = $('registerAlert');
-        const authButtons = $('authButtons');
         const userPanel = $('userPanel');
         const userGreeting = $('userGreeting');
         const logoutBtn = $('logoutBtn');
@@ -2488,6 +2860,194 @@
         const footerSavedJobs = $('footerSavedJobs');
         const footerBrowseJobs = $('footerBrowseJobs');
         const themeToggle = $('themeToggle');
+
+        // ─── Toast System ───
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' :
+                'fa-info-circle';
+            toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+            toastContainer.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(40px)';
+                toast.style.transition = 'all 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ─── Auth logic ───
+        function getUsers() { return JSON.parse(localStorage.getItem('ethiojobs_users') || '[]'); }
+
+        function saveUsers(users) { localStorage.setItem('ethiojobs_users', JSON.stringify(users)); }
+
+        function getCurrentUser() { return JSON.parse(localStorage.getItem('ethiojobs_current_user') || 'null'); }
+
+        function setCurrentUser(user) {
+            if (user) {
+                localStorage.setItem('ethiojobs_current_user', JSON.stringify(user));
+                currentUser = user;
+            } else {
+                localStorage.removeItem('ethiojobs_current_user');
+                currentUser = null;
+            }
+            updateUI();
+        }
+
+        function updateUI() {
+            if (currentUser) {
+                userPanel.style.display = 'flex';
+                userGreeting.textContent = `👋 ${currentUser.name}`;
+            } else {
+                userPanel.style.display = 'none';
+            }
+        }
+
+        // ─── Auth form handlers ───
+
+        // Switch tabs
+        function switchAuthTab(tab) {
+            const tabs = authTabs.querySelectorAll('.auth-tab');
+            tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+            authLoginForm.classList.toggle('active', tab === 'login');
+            authRegisterForm.classList.toggle('active', tab === 'register');
+            // Clear alerts
+            authLoginAlert.className = 'auth-alert';
+            authLoginAlert.textContent = '';
+            authRegisterAlert.className = 'auth-alert';
+            authRegisterAlert.textContent = '';
+        }
+
+        authTabs.addEventListener('click', (e) => {
+            const tab = e.target.closest('.auth-tab');
+            if (tab) switchAuthTab(tab.dataset.tab);
+        });
+
+        authSwitchToRegister.addEventListener('click', (e) => { e.preventDefault();
+            switchAuthTab('register'); });
+        authSwitchToLogin.addEventListener('click', (e) => { e.preventDefault();
+            switchAuthTab('login'); });
+
+        // Password strength
+        authRegisterPassword.addEventListener('input', function() {
+            const pwd = this.value;
+            const el = authPasswordStrength;
+            if (pwd.length < 4) { el.className = 'password-strength'; return; }
+            let score = 0;
+            if (pwd.length >= 6) score++;
+            if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) score++;
+            if (/\d/.test(pwd)) score++;
+            if (/[^A-Za-z0-9]/.test(pwd)) score++;
+            if (score >= 3) el.className = 'password-strength strong';
+            else if (score >= 2) el.className = 'password-strength medium';
+            else el.className = 'password-strength weak';
+        });
+
+        // Login
+        authLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = authLoginEmail.value.trim();
+            const password = authLoginPassword.value;
+
+            authLoginAlert.className = 'auth-alert';
+            authLoginAlert.textContent = '';
+
+            if (!email || !password) {
+                authLoginAlert.textContent = 'Please fill in all fields.';
+                authLoginAlert.className = 'auth-alert error';
+                return;
+            }
+
+            const users = getUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+            if (!user) {
+                authLoginAlert.textContent = 'Invalid email or password.';
+                authLoginAlert.className = 'auth-alert error';
+                return;
+            }
+
+            setCurrentUser(user);
+            authLoginAlert.textContent = '✅ Logged in successfully!';
+            authLoginAlert.className = 'auth-alert success';
+            showToast(`Welcome back, ${user.name}!`, 'success');
+            setTimeout(() => {
+                authPage.classList.add('hidden');
+                mainApp.style.display = 'block';
+                initApp();
+            }, 500);
+        });
+
+        // Register
+        authRegisterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = authRegisterName.value.trim();
+            const email = authRegisterEmail.value.trim();
+            const password = authRegisterPassword.value;
+            const confirm = authRegisterConfirm.value;
+
+            authRegisterAlert.className = 'auth-alert';
+            authRegisterAlert.textContent = '';
+
+            if (!name || !email || !password || !confirm) {
+                authRegisterAlert.textContent = 'All fields are required.';
+                authRegisterAlert.className = 'auth-alert error';
+                return;
+            }
+            if (password.length < 6) {
+                authRegisterAlert.textContent = 'Password must be at least 6 characters.';
+                authRegisterAlert.className = 'auth-alert error';
+                return;
+            }
+            if (!/^(?=.*[A-Za-z])(?=.*\d).+$/.test(password)) {
+                authRegisterAlert.textContent = 'Password must contain at least one letter and one number.';
+                authRegisterAlert.className = 'auth-alert error';
+                return;
+            }
+            if (password !== confirm) {
+                authRegisterAlert.textContent = 'Passwords do not match.';
+                authRegisterAlert.className = 'auth-alert error';
+                return;
+            }
+
+            const users = getUsers();
+            if (users.some(u => u.email === email)) {
+                authRegisterAlert.textContent = 'Email already registered. Please log in.';
+                authRegisterAlert.className = 'auth-alert error';
+                return;
+            }
+
+            const newUser = { id: Date.now(), name, email, password };
+            users.push(newUser);
+            saveUsers(users);
+            setCurrentUser(newUser);
+            authRegisterAlert.textContent = '✅ Account created successfully!';
+            authRegisterAlert.className = 'auth-alert success';
+            showToast('Welcome to EthioJobs Pro!', 'success');
+            setTimeout(() => {
+                authPage.classList.add('hidden');
+                mainApp.style.display = 'block';
+                initApp();
+            }, 500);
+        });
+
+        // ─── Logout ───
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            setCurrentUser(null);
+            showToast('You have been logged out.', 'info');
+            // Show auth page again
+            mainApp.style.display = 'none';
+            authPage.classList.remove('hidden');
+            // Reset forms
+            authLoginForm.reset();
+            authRegisterForm.reset();
+            authLoginAlert.className = 'auth-alert';
+            authLoginAlert.textContent = '';
+            authRegisterAlert.className = 'auth-alert';
+            authRegisterAlert.textContent = '';
+            switchAuthTab('login');
+        });
 
         // ─── render: categories ───
         function renderCategories() {
@@ -2516,6 +3076,7 @@
                     savedJobsSection.classList.remove('visible');
                     mainJobsSection.style.display = 'block';
                     applyFilters({ category: cat, page: 1 });
+                    showToast(`Showing ${cat} jobs`, 'info');
                 });
             });
         }
@@ -2531,9 +3092,7 @@
                 <p>Try adjusting your search or filters.</p>
               </div>
             `;
-                if (gridElement === jobsGrid) {
-                    paginationControls.innerHTML = '';
-                }
+                if (gridElement === jobsGrid) paginationControls.innerHTML = '';
                 return;
             }
 
@@ -2544,7 +3103,7 @@
             gridElement.innerHTML = pageItems.map(job => {
                 const tagClass = getTypeTagClass(job.type);
                 const remoteTag = job.remote ? '<span class="tag remote">Remote</span>' : '';
-                const featuredTag = job.featured ? '<span class="tag" style="background:#ffd700;color:#000;">Featured</span>' : '';
+                const featuredTag = job.featured ? '<span class="tag featured">Featured</span>' : '';
                 const isSaved = savedJobs.includes(job.id);
                 return `
               <div class="job-card" data-id="${job.id}">
@@ -2565,12 +3124,12 @@
                 <div class="job-actions">
                   <div class="salary">${job.salary}</div>
                   <div class="posted">Posted ${formatDate(job.posted)}</div>
-                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  <div class="action-buttons">
                     <button class="btn btn-primary btn-sm view-job-btn" data-id="${job.id}">
                       <i class="fas fa-eye"></i> View
                     </button>
                     <button class="btn btn-sm save-job-btn" data-id="${job.id}" style="background:transparent; border:1px solid var(--border-color);">
-                      <i class="fas fa-heart" style="color:${isSaved ? '#e74c3c' : 'var(--gray-500)'};"></i>
+                      <i class="fas fa-heart" style="color:${isSaved ? '#ef4444' : 'var(--gray-400)'};"></i>
                     </button>
                   </div>
                 </div>
@@ -2607,7 +3166,7 @@
                 });
             });
 
-            // Pagination only for main grid
+            // Pagination for main grid
             if (gridElement === jobsGrid) {
                 const totalPages = Math.ceil(total / PER_PAGE);
                 renderPagination(page, totalPages);
@@ -2639,12 +3198,20 @@
 
         // ─── toggle saved ───
         function toggleSaved(jobId) {
+            if (!currentUser) {
+                showToast('Please log in to save jobs.', 'error');
+                return;
+            }
             const idx = savedJobs.indexOf(jobId);
-            if (idx > -1) savedJobs.splice(idx, 1);
-            else savedJobs.push(jobId);
+            if (idx > -1) {
+                savedJobs.splice(idx, 1);
+                showToast('Job removed from saved.', 'info');
+            } else {
+                savedJobs.push(jobId);
+                showToast('Job saved successfully!', 'success');
+            }
             localStorage.setItem('ethiojobs_saved', JSON.stringify(savedJobs));
 
-            // Re-render the active view
             if (!showingSaved) {
                 const total = filteredJobs.length;
                 renderJobs(filteredJobs, jobsGrid, currentPage, total);
@@ -2763,36 +3330,44 @@
             modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            $('closeModalBtnInner')?.addEventListener('click', closeJobModal);
+            const closeInner = $('closeModalBtnInner');
+            if (closeInner) closeInner.addEventListener('click', closeJobModal);
+
             $('applyBtn')?.addEventListener('click', () => {
                 if (!currentUser) {
-                    alert('⚠️ Please log in to apply for this job.');
+                    showToast('Please log in to apply for this job.', 'error');
                     closeJobModal();
-                    openLoginModal();
+                    // Show auth page
+                    mainApp.style.display = 'none';
+                    authPage.classList.remove('hidden');
                     return;
                 }
-                alert(`✅ Application submitted for "${job.title}" at ${job.company}!`);
+                showToast(`✅ Application submitted for "${job.title}" at ${job.company}!`, 'success');
                 closeJobModal();
             });
+
             $('shareBtn')?.addEventListener('click', () => {
                 if (navigator.share) {
                     navigator.share({ title: job.title, text: `Check out: ${job.title} at ${job.company}`, url: window
                             .location.href }).catch(() => {});
                 } else {
                     navigator.clipboard.writeText(`${job.title} at ${job.company} — ${job.salary}`)
-                        .then(() => alert('📋 Copied to clipboard!'))
-                        .catch(() => alert('Share: ' + job.title + ' at ' + job.company));
+                        .then(() => showToast('📋 Job link copied to clipboard!', 'success'))
+                        .catch(() => showToast('Could not copy link.', 'error'));
                 }
             });
+
             $('saveModalBtn')?.addEventListener('click', () => {
                 if (!currentUser) {
-                    alert('⚠️ Please log in to save jobs.');
+                    showToast('Please log in to save jobs.', 'error');
                     closeJobModal();
-                    openLoginModal();
+                    mainApp.style.display = 'none';
+                    authPage.classList.remove('hidden');
                     return;
                 }
                 toggleSaved(job.id);
                 closeJobModal();
+                // Re-render after close
                 setTimeout(() => {
                     if (!showingSaved) {
                         const total = filteredJobs.length;
@@ -2809,60 +3384,11 @@
             document.body.style.overflow = '';
         }
 
-        // ─── Auth ───
-        function getUsers() { return JSON.parse(localStorage.getItem('ethiojobs_users') || '[]'); }
-
-        function saveUsers(users) { localStorage.setItem('ethiojobs_users', JSON.stringify(users)); }
-
-        function getCurrentUser() { return JSON.parse(localStorage.getItem('ethiojobs_current_user') || 'null'); }
-
-        function setCurrentUser(user) {
-            if (user) {
-                localStorage.setItem('ethiojobs_current_user', JSON.stringify(user));
-                currentUser = user;
-            } else {
-                localStorage.removeItem('ethiojobs_current_user');
-                currentUser = null;
-            }
-            updateUI();
-        }
-
-        function updateUI() {
-            if (currentUser) {
-                authButtons.style.display = 'none';
-                userPanel.style.display = 'flex';
-                userGreeting.textContent = `👋 ${currentUser.name}`;
-            } else {
-                authButtons.style.display = 'flex';
-                userPanel.style.display = 'none';
-            }
-        }
-
-        function openLoginModal() {
-            loginModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            loginAlert.className = 'alert';
-            loginAlert.textContent = '';
-            loginForm.reset();
-        }
-
-        function closeLoginModal() { loginModal.classList.remove('active');
-            document.body.style.overflow = ''; }
-
-        function openRegisterModal() {
-            registerModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            registerAlert.className = 'alert';
-            registerAlert.textContent = '';
-            registerForm.reset();
-            $('passwordStrength').className = 'password-strength';
-        }
-
-        function closeRegisterModal() { registerModal.classList.remove('active');
-            document.body.style.overflow = ''; }
-
+        // ─── Post Job ───
         function openPostJobModal() {
-            if (!currentUser) { alert('⚠️ Please log in to post a job.'); return; }
+            if (!currentUser) { showToast('Please log in to post a job.', 'error');
+                mainApp.style.display = 'none';
+                authPage.classList.remove('hidden'); return; }
             postJobModal.classList.add('active');
             document.body.style.overflow = 'hidden';
             postJobAlert.className = 'alert';
@@ -2873,88 +3399,6 @@
         function closePostJobModal() { postJobModal.classList.remove('active');
             document.body.style.overflow = ''; }
 
-        // ─── Auth handlers ───
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = $('registerName').value.trim();
-            const email = $('registerEmail').value.trim();
-            const password = $('registerPassword').value;
-            const confirm = $('registerConfirm').value;
-
-            registerAlert.className = 'alert';
-            registerAlert.textContent = '';
-
-            if (!name || !email || !password || !confirm) {
-                registerAlert.textContent = 'All fields are required.';
-                registerAlert.className = 'alert error';
-                return;
-            }
-            if (password.length < 6) {
-                registerAlert.textContent = 'Password must be at least 6 characters.';
-                registerAlert.className = 'alert error';
-                return;
-            }
-            if (!/^(?=.*[A-Za-z])(?=.*\d).+$/.test(password)) {
-                registerAlert.textContent = 'Password must contain at least one letter and one number.';
-                registerAlert.className = 'alert error';
-                return;
-            }
-            if (password !== confirm) {
-                registerAlert.textContent = 'Passwords do not match.';
-                registerAlert.className = 'alert error';
-                return;
-            }
-
-            const users = getUsers();
-            if (users.some(u => u.email === email)) {
-                registerAlert.textContent = 'Email already registered. Please log in.';
-                registerAlert.className = 'alert error';
-                return;
-            }
-
-            const newUser = { id: Date.now(), name, email, password };
-            users.push(newUser);
-            saveUsers(users);
-            setCurrentUser(newUser);
-            registerAlert.textContent = '✅ Account created successfully!';
-            registerAlert.className = 'alert success';
-            setTimeout(() => { closeRegisterModal();
-                alert('Welcome to EthioJobs Pro!'); }, 800);
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const email = $('loginEmail').value.trim();
-            const password = $('loginPassword').value;
-
-            loginAlert.className = 'alert';
-            loginAlert.textContent = '';
-
-            if (!email || !password) {
-                loginAlert.textContent = 'Please fill in all fields.';
-                loginAlert.className = 'alert error';
-                return;
-            }
-
-            const users = getUsers();
-            const user = users.find(u => u.email === email && u.password === password);
-            if (!user) {
-                loginAlert.textContent = 'Invalid email or password.';
-                loginAlert.className = 'alert error';
-                return;
-            }
-
-            setCurrentUser(user);
-            loginAlert.textContent = '✅ Logged in successfully!';
-            loginAlert.className = 'alert success';
-            setTimeout(() => { closeLoginModal();
-                alert('Welcome back, ' + user.name + '!'); }, 800);
-        }
-
-        function handleLogout() { setCurrentUser(null);
-            alert('You have been logged out.'); }
-
-        // ─── Post Job ───
         function handlePostJob(e) {
             e.preventDefault();
             const title = $('postTitle').value.trim();
@@ -2991,26 +3435,8 @@
             allJobs.unshift(newJob);
             applyFilters({ page: 1 });
             closePostJobModal();
-            postJobAlert.textContent = '✅ Job posted successfully!';
-            postJobAlert.className = 'alert success';
-            setTimeout(() => { postJobAlert.className = 'alert';
-                postJobAlert.textContent = ''; }, 3000);
+            showToast('✅ Job posted successfully!', 'success');
         }
-
-        // ─── Password strength ───
-        $('registerPassword')?.addEventListener('input', function() {
-            const pwd = this.value;
-            const el = $('passwordStrength');
-            if (pwd.length < 4) { el.className = 'password-strength'; return; }
-            let score = 0;
-            if (pwd.length >= 6) score++;
-            if (/[A-Z]/.test(pwd) && /[a-z]/.test(pwd)) score++;
-            if (/\d/.test(pwd)) score++;
-            if (/[^A-Za-z0-9]/.test(pwd)) score++;
-            if (score >= 3) el.className = 'password-strength strong';
-            else if (score >= 2) el.className = 'password-strength medium';
-            else el.className = 'password-strength weak';
-        });
 
         // ─── Theme ───
         function toggleTheme() {
@@ -3020,6 +3446,7 @@
             localStorage.setItem('theme', next);
             const icon = themeToggle.querySelector('i');
             icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            showToast(`Switched to ${next} mode`, 'info');
         }
 
         const savedTheme = localStorage.getItem('theme') || 'light';
@@ -3034,6 +3461,8 @@
             savedJobsSection.classList.add('visible');
             renderSavedJobs();
             navLinks.classList.remove('open');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            savedLinkNav.classList.add('active');
         }
 
         function showMain() {
@@ -3042,6 +3471,8 @@
             mainJobsSection.style.display = 'block';
             applyFilters({ page: 1 });
             navLinks.classList.remove('open');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            homeLinkNav.classList.add('active');
         }
 
         savedLinkNav.addEventListener('click', e => { e.preventDefault();
@@ -3086,30 +3517,12 @@
             savedJobsSection.classList.remove('visible');
             mainJobsSection.style.display = 'block';
             applyFilters({ page: 1 });
+            showToast('All filters cleared', 'info');
         });
 
         closeModalBtn.addEventListener('click', closeJobModal);
         modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeJobModal(); });
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeJobModal(); });
-
-        loginBtn.addEventListener('click', e => { e.preventDefault();
-            openLoginModal(); });
-        registerBtn.addEventListener('click', e => { e.preventDefault();
-            openRegisterModal(); });
-        closeLoginBtn.addEventListener('click', closeLoginModal);
-        closeRegisterBtn.addEventListener('click', closeRegisterModal);
-        loginModal.addEventListener('click', (e) => { if (e.target === loginModal) closeLoginModal(); });
-        registerModal.addEventListener('click', (e) => { if (e.target === registerModal) closeRegisterModal(); });
-        switchToRegister.addEventListener('click', e => { e.preventDefault();
-            closeLoginModal();
-            openRegisterModal(); });
-        switchToLogin.addEventListener('click', e => { e.preventDefault();
-            closeRegisterModal();
-            openLoginModal(); });
-        loginForm.addEventListener('submit', handleLogin);
-        registerForm.addEventListener('submit', handleRegister);
-        logoutBtn.addEventListener('click', e => { e.preventDefault();
-            handleLogout(); });
 
         postJobBtn.addEventListener('click', e => { e.preventDefault();
             openPostJobModal(); });
@@ -3121,12 +3534,8 @@
 
         hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); });
 
-        // ─── Init ───
-        function init() {
-            const user = getCurrentUser();
-            if (user) { currentUser = user;
-                updateUI(); } else { updateUI(); }
-
+        // ─── Init App (called after login) ───
+        function initApp() {
             renderCategories();
             filteredJobs = sortJobs([...allJobs], 'newest');
             currentPage = 1;
@@ -3134,10 +3543,29 @@
             jobCountEl.textContent = filteredJobs.length;
             resultCount.textContent = `Showing ${filteredJobs.length} jobs`;
             savedJobs = JSON.parse(localStorage.getItem('ethiojobs_saved')) || [];
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            homeLinkNav.classList.add('active');
+            // Ensure main sections visible
+            savedJobsSection.classList.remove('visible');
+            mainJobsSection.style.display = 'block';
         }
 
-        init();
-        console.log('✅ EthioJobs Pro loaded successfully!');
+        // ─── Initial load: check if user already logged in ───
+        (function() {
+            const user = getCurrentUser();
+            if (user) {
+                currentUser = user;
+                updateUI();
+                authPage.classList.add('hidden');
+                mainApp.style.display = 'block';
+                initApp();
+            } else {
+                authPage.classList.remove('hidden');
+                mainApp.style.display = 'none';
+                // Show login tab
+                switchAuthTab('login');
+            }
+        })();
     </script>
 </body>
 </html>
